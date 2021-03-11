@@ -9,5 +9,5 @@ Esta semana hemos repartido el trabajo entra de cada uno de los miembros del gru
 4. Creación del Backlog en Taiga.
 5. Seleccionar el lenguaje de programación para la aplicación. 
     + Node.js (Backend)
-    + Html, css, javascript (Fronted)
+    + Html, CSS, JavaScript (Fronted)
     + MySQL (Base de datos)
