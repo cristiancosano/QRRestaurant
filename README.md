@@ -2,7 +2,7 @@
 
 ## Documentanción de la metodología Scrum 
 ### Semana del 11/03 al 18/03
-Esta semana hemos repartido el trabajo entra de cada uno de los miembros del grupo. &nbsp
+Esta semana hemos repartido el trabajo entra de cada uno de los miembros del grupo.
 Las tareas principales que hemos llevado a cabo durante esta semana son las siguientes:
 1. Documentación de la primera página. Hemos utilizado google doc para que sea colaborativo. 
 2. Creación del respositorio en GitHub. 
