@@ -16,7 +16,7 @@ Esta semana hemos repartido el trabajo entra de cada uno de los miembros del gru
 
 ### Semana del 22 al 28
 Durante esta semana, todo el equipo hemos trabajado en la especificación de requisitos del proyecto que selecionamos.  Hemos realizado 3 tareas principales: 
-**1. Captura de requitos.** Esto lo hemos realizado a través de una entrevista al profesor de la cual pudimos sacar un mapa conceptual del proyecto
-**2. Definición de requisitos.** A partir de ese mapa conceptual definimos una lista previa de requisitos formulados en un lenguaje formal. 
-**3. Diagrama de casos de uso.** Elaboramos el diagrama de casos de uso a partir de la lista de requisitos que sacamos con anterioridad
-**4. Validación de requisitos.** Mediante una matriz de trazabilidad comprobamos que los requisitos estaban cubiertos por al menos un caso de uso. 
+1. **Captura de requitos.** Esto lo hemos realizado a través de una entrevista al profesor de la cual pudimos sacar un mapa conceptual del proyecto
+2. **Definición de requisitos.** A partir de ese mapa conceptual definimos una lista previa de requisitos formulados en un lenguaje formal. 
+3. **Diagrama de casos de uso.** Elaboramos el diagrama de casos de uso a partir de la lista de requisitos que sacamos con anterioridad
+4. **Validación de requisitos.** Mediante una matriz de trazabilidad comprobamos que los requisitos estaban cubiertos por al menos un caso de uso. 
