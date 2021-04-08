@@ -14,7 +14,7 @@ Esta semana hemos repartido el trabajo entra de cada uno de los miembros del gru
 
 6. Creación de una instancia en la plataforma **[Heroku](https://www.heroku.com/)**, la cual vamos a usar como servidor. En dicha instancia tenemos desplegada nuestra aplicación con despliegue continuo.
 
-![sprint-1](/img/sprint-1 "Sprint 1")
+![sprint-1](/img/sprint-1.png "Sprint 1")
 
 
 ### Semana del 22 al 28
