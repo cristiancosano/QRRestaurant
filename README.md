@@ -6,7 +6,7 @@ Esta semana hemos repartido el trabajo entra de cada uno de los miembros del gru
 1. Documentación de la primera práctica. Hemos utilizado Google Doc para que sea colaborativo. 
 2. Creación del respositorio en GitHub. 
 3. Creación de la base de datos en el servidor de la UCO. 
-4. Creación del Backlog en Taiga.
+4. Creación del Backlog en Taiga. Para acceder al backlog público del proyecto use este enlace **[Backlog](https://tree.taiga.io/project/cristiancosano-qr-restaurant)**
 5. Escoger las tecnologías usadas para el frontend y el backend de la aplicación:
     + Node.js (Backend)
     + Html, CSS, JavaScript (Fronted)
@@ -17,9 +17,11 @@ Esta semana hemos repartido el trabajo entra de cada uno de los miembros del gru
 ![sprint-1](/img/sprint-1.png "Sprint 1")
 
 
-### Semana del 22 al 28
+### Semana del 22/03 al 28/03
 Durante esta semana, todo el equipo hemos trabajado en la especificación de requisitos del proyecto que selecionamos.  Hemos realizado 3 tareas principales: 
 1. **Captura de requitos.** Esto lo hemos realizado a través de una entrevista al profesor de la cual pudimos sacar un mapa conceptual del proyecto
 2. **Definición de requisitos.** A partir de ese mapa conceptual definimos una lista previa de requisitos formulados en un lenguaje formal. 
 3. **Diagrama de casos de uso.** Elaboramos el diagrama de casos de uso a partir de la lista de requisitos que sacamos con anterioridad
 4. **Validación de requisitos.** Mediante una matriz de trazabilidad comprobamos que los requisitos estaban cubiertos por al menos un caso de uso. 
+
+![sprint-2](/img/sprint-2.png "Sprint 2")
