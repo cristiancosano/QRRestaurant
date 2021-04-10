@@ -6,7 +6,7 @@
 ![Diagrama de Actividad: Filtrar Restaurante Cercano](filtrarRestauranteCercano.png "Filtrar Restaurante Cercano")
 ![Diagrama de Actividad: Filtrar Por Valoración](filtrarPorValoracion.png "Filtrar Por Valoración")
 ![Diagrama de Actividad: Filtrar Por Nombre de Restaurante](filtrarPorNombreRestaurante.png "Filtrar Por Nombre de Restaurante")
-![Diagrama de Actividad: Filtrar Por Tipo de Comida]filtrarPorComidaRestaurante.png "Filtrar Por Tipo de Comida")
+![Diagrama de Actividad: Filtrar Por Tipo de Comida](filtrarPorComidaRestaurante.png "Filtrar Por Tipo de Comida")
 ![Diagrama de Actividad: Entrar Cola de Espera](entrarColaEspera.jpg "Entrar Cola de Espera")
 ![Diagrama de Actividad: Mostrar Restaurantes Alternativos](mostrarRestaurantesAlternativos.jpg "Mostrar Restaurantes Alternativos")
 ![Diagrama de Actividad: Registrar Entrada](registrarEntrada.jpg "Registrar Entrada")
