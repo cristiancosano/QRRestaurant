@@ -32,7 +32,7 @@ A principios de semana realizamos un reparto de los diagramas que cada uno iba a
 1. **Técnica Walk-throughs.** Utilizamos está técnica de validación de requisitos conjuntamente con el profesor, que nos ofreció feed-back de como estaba elabaroda nuestra lista de requisitos y cuales nos sobraban o faltaban. 
 2. **Auditoria**. Antes de está técnica ya tenías la lista de requisitos prácticamente cerrada pero, todo el equipo realizamos una última lectura del enunciado del problema y de la lista de requisitos para ver si nos faltaba alguno. Después de realizar la auditoría tuvimos que añadir varios requisitos nuevos que especificamos en la memoria. 
 3. **Modelado de requisitos en UWE**. Finalmente, nos familiarizamos con el modelado en UWE, aprendimos la sintaxis y nos pusimos a modelar cada requito. Elaboramos el digrama de casos de uso y cada actividad de nuestro sistema. Cada diagrama esta en este enlace: **[diagramas](https://github.com/cristiancosano/QRRestaurant/tree/main/img/diagramas%20de%20actividad)**.
-4. **Sketchers o bocetos**. Hemos utilizado estos bocetos en html para tener una idea más clara de como va a ser la interacción de nuestro sistema y validar mediante esta técnica todos los requisitos. Enlace a los bocetos: **[Sketchers](https://cristiancosano.github.io/QRRestaurant/)**.
+4. **Sketchess o bocetos**. Hemos utilizado estos bocetos en html y bootstrap para tener una idea más clara de como va a ser la interacción de nuestro sistema y validar mediante esta técnica todos los requisitos. Enlace a los bocetos: **[Sketches](https://cristiancosano.github.io/QRRestaurant/)**.
 
 
 
