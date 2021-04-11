@@ -16,6 +16,6 @@
 ![Diagrama de Actividad: Eliminar Restaurante](eliminarRestaurante.png "Eliminar Restaurante")
 ![Diagrama de Actividad: Registrar Usuario](registrarUsuario.png "Registrar Usuario")
 ![Diagrama de Actividad: Iniciar Sesión](iniciarSesion.png "Iniciar Sesión")
-![Diagrama de Actividad: Registrar Acompañante](registrarAcompanante.png "Registrar Acompañante")
+![Diagrama de Actividad: Registrar Acompañante](registrarAcompanantes.png "Registrar Acompañante")
 ![Diagrama de Actividad: Ver mis restaurantes](verMisRestaurantes.png "Ver mis restaurantes")
 ![Diagrama de Actividad: Valorar restaurante](valorarRestaurante.png "Valorar restaurante")
