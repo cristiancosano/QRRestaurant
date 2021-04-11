@@ -12,7 +12,7 @@
 ![Diagrama de Actividad: Registrar Entrada](registrarEntrada.jpg "Registrar Entrada")
 ![Diagrama de Actividad: Restringir Entrada](restringirEntrada.jpg "Restringir Entrada")
 ![Diagrama de Actividad: Añadir Restaurante](anadirRestaurante.png "Añadir Restaurante")
-![Diagrama de Actividad: Editar Restaurante](anadirRestaurante.png "Editar Restaurante")
+![Diagrama de Actividad: Editar Restaurante](editarRestaurante.png "Editar Restaurante")
 ![Diagrama de Actividad: Eliminar Restaurante](eliminarRestaurante.png "Eliminar Restaurante")
 ![Diagrama de Actividad: Registrar Usuario](registrarUsuario.png "Registrar Usuario")
 ![Diagrama de Actividad: Iniciar Sesión](iniciarSesion.png "Iniciar Sesión")
