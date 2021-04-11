@@ -34,5 +34,5 @@ A principios de semana realizamos un reparto de los diagramas que cada uno iba a
 3. **Modelado de requisitos en UWE**. Finalmente, nos familiarizamos con el modelado en UWE, aprendimos la sintaxis y nos pusimos a modelar cada requito. Elaboramos el digrama de casos de uso y cada actividad de nuestro sistema. Cada diagrama esta en este enlace: **[diagramas](https://github.com/cristiancosano/QRRestaurant/tree/main/img/diagramas%20de%20actividad)**.
 4. **Sketches o bocetos**. Hemos utilizado estos bocetos en HTML5 y Bootstrap 5 para tener una idea más clara de como va a ser la interacción de nuestro sistema y validar mediante esta técnica todos los requisitos. Enlace a los bocetos: **[Sketches](https://cristiancosano.github.io/QRRestaurant/)**.
 
-![sprint-3](/SCRUM/Burtdown Chart/srpint-3 "Sprint 3")
+![sprint-3](/SCRUM/Burndown%20Chart/sprint-3 "Sprint 3")
 
