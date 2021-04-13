@@ -1,5 +1,7 @@
 # QRRestaurant
 
+![sprint-1](/DOC/logo-qr-restaurant.png "Logo QrRestaurant")
+
 ## Documentanción de la metodología Scrum 
 ### Semana del 11/03 al 18/03
 Esta semana hemos repartido el trabajo entra de cada uno de los miembros del grupo.Las tareas principales que hemos llevado a cabo durante esta semana son las siguientes:
