@@ -1,6 +1,6 @@
 # QRRestaurant
 
-<img src="DOC/logo-qr-restaurant.png" alt="Logo QrRestaurant" width="200"/>
+<img src="DOC/logo-qr-restaurant.png" alt="Logo QrRestaurant" width="500"/>
 
 ## Documentanción de la metodología Scrum 
 ### Semana del 11/03 al 18/03
