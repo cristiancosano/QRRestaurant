@@ -1,4 +1,6 @@
 # Diagramas de Actividad
+![Diagrama de Actividad: Registrar Entrada](registrarEntrada.jpg "Registrar Entrada")
+![Diagrama de Actividad: Restringir Entrada](restringirEntrada.jpg "Restringir Entrada")
 ![Diagrama de Actividad: Mostrar Historial](mostrarHistorial.png "Mostrar Historial")
 ![Diagrama de Actividad: Mostrar Información Restaurante](mostrarInformacionRestaurante.png "Mostrar Información Restaurante")
 ![Diagrama de Actividad: Registrar Salida](registrarSalida.png "Registrar Salida")
@@ -9,8 +11,6 @@
 ![Diagrama de Actividad: Filtrar Por Tipo de Comida](filtrarPorComidaRestaurante.png "Filtrar Por Tipo de Comida")
 ![Diagrama de Actividad: Entrar Cola de Espera](entrarColaEspera.jpg "Entrar Cola de Espera")
 ![Diagrama de Actividad: Mostrar Restaurantes Alternativos](mostrarRestaurantesAlternativos.jpg "Mostrar Restaurantes Alternativos")
-![Diagrama de Actividad: Registrar Entrada](registrarEntrada.jpg "Registrar Entrada")
-![Diagrama de Actividad: Restringir Entrada](restringirEntrada.jpg "Restringir Entrada")
 ![Diagrama de Actividad: Añadir Restaurante](anadirRestaurante.png "Añadir Restaurante")
 ![Diagrama de Actividad: Editar Restaurante](editarRestaurante.png "Editar Restaurante")
 ![Diagrama de Actividad: Eliminar Restaurante](eliminarRestaurante.png "Eliminar Restaurante")
