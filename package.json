@@ -1,23 +1,16 @@
 {
   "name": "qrrestaurant",
-  "version": "1.0.0",
-  "description": "Web application to control access to restaurants using qr code",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cristiancosano/QRRestaurant.git"
-  },
-  "author": "group 1",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/cristiancosano/QRRestaurant/issues"
-  },
-  "homepage": "https://github.com/cristiancosano/QRRestaurant#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
