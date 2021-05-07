@@ -1,10 +1,5 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
-const { Rating } = require('../models/Rating')
 class RestaurantController{
-
-    constructor(){
-
-    }
 
     static async index(req, res, next){
         let restaurants = await restaurantModel.findAll();
@@ -65,6 +60,4 @@ class RestaurantController{
 
 }
 
-module.exports = {
-    RestaurantController
-}
+module.exports = {RestaurantController};

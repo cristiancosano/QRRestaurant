@@ -11,6 +11,7 @@ var myRestaurantsRouter = require('./routes/myRestaurants');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var registerRouter = require('./routes/register');
+var qrCodeRouter = require('./routes/qrCode')
 
 require('./models/relationships')
 
@@ -35,6 +36,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);
 app.use('/my-restaurants', myRestaurantsRouter);
+app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
