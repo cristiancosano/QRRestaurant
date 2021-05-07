@@ -1,5 +1,6 @@
 class SessionController{
 
+    constructor()
     // Muestra el formulario de inicio de sesion
     static login(req, res, next){
         res.render('login/login');
