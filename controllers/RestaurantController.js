@@ -50,11 +50,13 @@ class RestaurantController{
     }
 
     static async delete(req, res, next){ //Eliminar restaurante
-        let form = req.body;
+        let params = req.params;
 
         //Eliminar con restaurantModel form.id
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}});
+        await restaurantModel.destroy({where: {id: params.id}});
 
-        res.cookie('message', 'El restaurante '+ form.name +' ha sido eliminado correctamente!')
+        res.cookie('message', 'El restaurante '+ restaurant.name +' ha sido eliminado correctamente!')
         res.redirect('/my-restaurants');
     }
 
