@@ -1,8 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const { Rating } = require('./Rating');
+const { Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require('./SequelizeManager');
-//const { Rating } = require('./Rating');
-//const { User } = require('./User');
 const sequelize = SequelizeManager.getInstance();
 
 class Restaurant extends Model {}

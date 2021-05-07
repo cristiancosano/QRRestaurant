@@ -1,7 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require('./SequelizeManager')
-//const { Restaurant } = require('./Restaurant');
-//const { User } = require('./User');
 
 const sequelize = SequelizeManager.getInstance();
 
