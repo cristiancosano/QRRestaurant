@@ -2,7 +2,7 @@ class SessionController{
 
     // Muestra el formulario de inicio de sesion
     static login(req, res, next){
-
+        res.render('login/login');
     }
 
     // Comprueba los datos y almacena la sesión si son validos
