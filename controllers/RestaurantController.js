@@ -1,4 +1,5 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
+const { Rating } = require('../models/Rating')
 class RestaurantController{
 
     constructor(){
@@ -13,12 +14,13 @@ class RestaurantController{
     static async show(req, res, next){
         let params = req.params;
         let restaurant = await restaurantModel.findOne({where: {id: params.id}})
-        res.render('restaurant/show', restaurant.toJSON());
+        let data = restaurant.toJSON();
+        data.average = await restaurant.getAverage();
+        res.render('restaurant/show', data);
     }
 
     static async manage(req, res, next){
         var message = undefined
-        console.log(req.cookies.message)
         if(req.cookies.message){
             var message = req.cookies.message;
             res.clearCookie('message');

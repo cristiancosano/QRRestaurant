@@ -30,12 +30,13 @@
                     <div class="card text-dark bg-light mb-3">
                     <div class="card-header">Valoraciones</div>
                     <div class="card-body">
+                      
+
                         <h5 class="card-title text-center">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
+                            <% for(var i=0; i<5; i++){ %>     
+                                <i class="bi bi-<%= (average-i>=1) ? 'star-fill' : (average-i<=0) ? 'star' : 'star-half' %>"></i>
+                            <% } %>
+                     
                         </h5>
                         <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1"> estrellas</p>
                     </div>
