@@ -3,6 +3,7 @@ var router = express.Router();
 var {RestaurantController} = require('../controllers/RestaurantController')
 
 
-router.get('/', (req, res, next) => RestaurantController.index(req, res, next));
+/* GET restaurant show. */
+router.get('/', (req, res, next) => RestaurantController.manage(req, res, next));
 
 module.exports = router;

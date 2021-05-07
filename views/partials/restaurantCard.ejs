@@ -1,0 +1,29 @@
+<div class="col mb-3">
+    <div class="row border rounded m-0 shadow bg-white mt-4">
+        <div class="col-md-3 p-0">
+            <a href="/restaurants/<%= id %>">
+                <img src="assets/img/averroes.jpg" class="img-thumbnail w-100 border-0 bg-white">
+            </a>
+        </div>
+        <div class="col-md-9 pt-4 pb-4">
+            <a class="h4 text-decoration-none text-dark" href="/restaurants/<%= id %>"><%= name %></a>
+            <p class="text-muted small pt-1">Ultima actualización: <%= updatedAt %></p>
+            <p class="text-muted"></p>
+            <p><%= description %></p>
+        </div>
+        <% if(typeof manage != 'undefined' && manage == true){ %>
+        <div class="col-12 border-top pl-3 pr-3 pt-2 pb-2 text-center" style="background-color: #F7F7F7;">
+            <a href="/restaurants/<%= id %>"
+                class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> Ver restaurante</a>
+
+            <a href="/restaurants/<%= id %>/edit"
+                class="btn btn-success btn-sm "><i class="bi bi-pencil-square"></i> Editar restaurante</a>
+            <form action="/restaurants/<%= id %>/delete" method="post" style="display: inline;">
+                <input type="hidden" name="name" value="<%= name %>">
+                <input type="hidden" name="id" value="<%= id %>">
+                <button type="submit" class="btn btn-danger btn-sm">Eliminar restaurante</button>
+            </form>
+        </div>
+        <% } %>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-const restaurantModel = require('../models/User').User
+const restaurantModel = require('../models/Restaurant').Restaurant
 class RestaurantController{
 
     constructor(){
@@ -6,25 +6,59 @@ class RestaurantController{
     }
 
     static async index(req, res, next){
-        var restaurants = await restaurantModel.findAll();
-        res.render('index', {restaurants});
+        let restaurants = await restaurantModel.findAll();
+        res.render('restaurant/index', {restaurants});
     }
 
     static async show(req, res, next){
-        var restaurant = await restaurantModel.findOne({where: {dni: '32731385Q'}})
-        res.render('index', user.toJSON());
+        let params = req.params;
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}})
+        res.render('restaurant/show', restaurant.toJSON());
+    }
+
+    static async manage(req, res, next){
+        var message = undefined
+        console.log(req.cookies.message)
+        if(req.cookies.message){
+            var message = req.cookies.message;
+            res.clearCookie('message');
+        }
+        let restaurants = await restaurantModel.findAll();
+        res.render('restaurant/manage', {restaurants, message});
     }
 
     create(){
 
     }
 
-    edit(){ //Devolver vista de editar
+    static async edit(req, res, next){ //Devolver vista de editar
+        let params = req.params;
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}})
+        res.render('restaurant/edit', restaurant.toJSON());
+    }
+
+    static async store(req, res, next){ //Almacenar nuevo restaurante
+        let params = req.body;
 
     }
 
-    store(){ //Almacenar datos
+    static async update(req, res, next){ //Modificar restaurante
+        let params = req.params;
+        let form = req.body;
 
+        //Actualizar con restaurantModel params.id
+        
+        res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
+        res.redirect('/my-restaurants');
+    }
+
+    static async delete(req, res, next){ //Eliminar restaurante
+        let form = req.body;
+
+        //Eliminar con restaurantModel form.id
+
+        res.cookie('message', 'El restaurante '+ form.name +' ha sido eliminado correctamente!')
+        res.redirect('/my-restaurants');
     }
 
 }

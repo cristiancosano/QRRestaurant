@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('../partials/header') %>
+    <title>QrRestaurant</title>
+</head>
+<body>
+    <%- include('../partials/primaryMenu') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card mt-3" >
+                    <img src="/assets/img/<%= photos[0] %>" class="card-img-top" style="width: 150px; margin: 0 auto;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= name %> </h5>
+                        <p class="card-text"><%= description %></p>
+                        <h4 class="h6">Carta del restaurante:</h4>
+                        <embed src="/assets/restaurantMenu/<%= menu %>" type="application/pdf" width="100%" height="400px" />
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                <div class="card text-dark bg-light mb-3 mt-3">
+                    <div class="card-header">Personas en espera</div>
+                    <div class="card-body">
+                        <p class="card-text text-center">Este restaurante tiene 10 personas en espera.</p>
+                    </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                    <div class="card-header">Valoraciones</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-half"></i>
+                        </h5>
+                        <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1"> estrellas</p>
+                    </div>
+                    </div>
+                    <div class="card text-dark bg-light mb-3">
+                    <div class="card-header">Ubicación: </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Google Maps</h5>
+                        <p class="card-text">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.7245150508897!2d-4.72374458467837!3d37.91350137973441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6ce070c4d3b65b%3A0x5afb0f5b1a91ea4!2sAulario%20Averroes!5e0!3m2!1ses!2ses!4v1618152671042!5m2!1ses!2ses" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <div class="d-grid gap-2 mb-3">
+                            <a href="https://goo.gl/maps/7b1brzyBjMJhJMDy5" target="_blank" class="btn btn-success">Calcular ruta</a>
+                        </div>
+                        </p>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts') %>
+</body>
+</html>
