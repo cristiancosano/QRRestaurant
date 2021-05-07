@@ -11,6 +11,9 @@ var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var registerRouter = require('./routes/register');
 
+require('./models/relationships')
+
+
 var app = express();
 
 // view engine setup

@@ -1,8 +1,9 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('SwP1l1E2g2', 'SwP1l1E2g2', 'jH5505UucH', {
-    host: 'remotemysql.com',
-    dialect: 'mysql'
-});
+const { Rating } = require('./Rating');
+const { SequelizeManager } = require('./SequelizeManager');
+//const { Rating } = require('./Rating');
+//const { User } = require('./User');
+const sequelize = SequelizeManager.getInstance();
 
 class Restaurant extends Model {}
 Restaurant.init({
@@ -17,11 +18,7 @@ Restaurant.init({
 
 }, { sequelize, modelName: 'restaurant', tableName: 'restaurant'});
 
-//Restaurant.sync({force: true})
-
-
 
 module.exports = {
     Restaurant
 }
-
