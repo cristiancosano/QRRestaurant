@@ -29,7 +29,14 @@ class RestaurantController{
     }
 
     static async create(req, res, next){
-        res.render('restaurant/create');
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        console.log(foodTypes);
+        res.render('restaurant/create', {foodTypes});
+    }
+
+    static async store(req, res, next){ //Almacenar nuevo restaurante
+        let params = req.body;
+
     }
 
     static async edit(req, res, next){ //Devolver vista de editar
@@ -38,11 +45,6 @@ class RestaurantController{
         console.log(restaurant)
         console.log(restaurant.toJSON())
         res.render('restaurant/edit', restaurant.toJSON());
-    }
-
-    static async store(req, res, next){ //Almacenar nuevo restaurante
-        let params = req.body;
-
     }
 
     static async update(req, res, next){ //Modificar restaurante
