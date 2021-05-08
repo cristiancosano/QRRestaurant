@@ -56,7 +56,7 @@ class RestaurantController{
             description:form.description, 
             menu:'menu',
             photos:'photo',
-            userDni:'12345678D',
+            userDni:req.session.currentUser.dni,
             foodTypeId:form.foodType
         });
         res.render('restaurant/my-restaurants');
