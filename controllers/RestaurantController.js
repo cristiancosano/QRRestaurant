@@ -48,7 +48,7 @@ class RestaurantController{
     }
 
     static async create(req, res, next){
-        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        let foodTypes = await foodTypeModel.findAll();
         res.render('restaurant/create', {foodTypes});
     }
 
@@ -72,7 +72,9 @@ class RestaurantController{
 
     static async edit(req, res, next){ //Devolver vista de editar
         let params = req.params;
-        let restaurant = await restaurantModel.findOne({where: {id: params.id}})
+        let foodTypes = await foodTypeModel.findAll();
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}});
+        
         res.render('restaurant/edit', restaurant.toJSON());
     }
 
