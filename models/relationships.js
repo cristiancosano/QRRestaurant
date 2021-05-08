@@ -4,6 +4,7 @@ const { User } = require("./User");
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require("./SequelizeManager");
 const { FoodType } = require("./FoodType");
+const { History } = require("./History");
 
 
 const sequelize = SequelizeManager.getInstance()
@@ -27,8 +28,15 @@ Rating.belongsTo(User);
 FoodType.hasMany(Restaurant);
 Restaurant.belongsTo(FoodType);
 
+Restaurant.hasMany(History);
+History.belongsTo(Restaurant)
+
+User.hasMany(History)
+History.belongsTo(User)
+
 
 async function migrateSeed(){
+    await History.drop();
     await Rating.drop();
     await Restaurant.drop();
     await FoodType.drop();
