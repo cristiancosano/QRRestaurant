@@ -28,8 +28,8 @@ class RestaurantController{
         res.render('restaurant/manage', {restaurants, message});
     }
 
-    create(){
-
+    static async create(req, res, next){
+        res.render('restaurant/create');
     }
 
     static async edit(req, res, next){ //Devolver vista de editar
