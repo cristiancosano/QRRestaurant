@@ -12,8 +12,13 @@
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Inicio</a>
               </li>
+              <% if(session.currentUser!=undefined && session.currentUser.admin){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/my-restaurants">Mis restaurantes</a>
+                </li>
+              <% } %>
               <li class="nav-item">
-                <a class="nav-link" href="/my-restaurants">Mis restaurantes</a>
+                <a class="nav-link" href="/about-us">Quienes somos</a>
               </li>
         </ul>
         <form class="d-flex">

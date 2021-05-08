@@ -29,6 +29,9 @@ class SessionController{
     // Cierra la sesion
     static logout(req, res, next){
         req.session.destroy();
+        res.cookie('message', 'Has cerrado sesión correctamente. Hasta pronto! 👋🏻')
+        res.redirect('/');
+        res.redirect('/');
     }
 }
 

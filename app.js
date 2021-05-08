@@ -13,6 +13,7 @@ var logoutRouter = require('./routes/logout');
 var registerRouter = require('./routes/register');
 var qrCodeRouter = require('./routes/qrCode');
 var searchRouter = require ('./routes/search');
+var aboutUsRouter = require('./routes/aboutUs');
 
 
 require('./models/relationships')
@@ -42,8 +43,8 @@ app.use((req, res, next)=>{
 })
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);
-//app.use('/my-restaurants', checkAdminUser);
 app.use('/my-restaurants', myRestaurantsRouter);
+app.use('/about-us', aboutUsRouter);
 app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
