@@ -45,8 +45,8 @@ async function migrateSeed(){
 
     User.create({dni: '12345678A', email: 'pacoalmenara@gmail.com', password: 'password1'})
     User.create({dni: '12345678B', email: 'stickyamp1@gmail.com', password: 'password2'})
-    User.create({dni: '12345678C', email: 'cristiancosano@icloud.com', password: 'password3'})
-    User.create({dni: '12345678D', email: 'jmgil@gmail.com', password: 'password4'})
+    User.create({dni: '12345678C', email: 'cristiancosano@icloud.com', password: 'password3', admin: true})
+    User.create({dni: '12345678D', email: 'jmgil@gmail.com', password: 'password4', admin: true})
     User.create({dni: '12345678E', email: 'antoniolrj4@gmail.com', password: 'password5'})
 
     FoodType.create({name: 'Asiática'});

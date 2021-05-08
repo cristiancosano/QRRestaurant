@@ -54,6 +54,7 @@ class RestaurantController{
 
     static async store(req, res, next){ //Almacenar nuevo restaurante
         let form = req.body;
+
         const anonymous = await restaurantModel.create({ 
             name:form.name, 
             address:form.address, 
@@ -61,13 +62,45 @@ class RestaurantController{
             freeSeats:form.capacity, 
             city:form.city, 
             description:form.description, 
-            menu:'menu',
-            photos:'photo',
+            menu:'',
+            photos:'',
             userDni:req.session.currentUser.dni,
             foodTypeId:form.foodType
         });
-        res.render('restaurant/my-restaurants');
-        //res.render('restaurant/my-restaurants', {message: 'Restaurante Creado Correctamente'});
+
+        if(req.files){
+            if(req.files.restaurantMenu && req.files.restaurantMenu.mimetype=='application/pdf'){
+                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + anonymous.id+'.pdf';
+                req.files.restaurantMenu.mv(menuUploadPath, (err)=>{
+                    if(!err){
+                        anonymous.update({menu: anonymous.id+'.pdf'});
+                    }
+                })
+            }
+            if(req.files.photos && req.files.photos.length > 0){
+                let photoUploadPath = global.appRoot + '/public/assets/img/';
+                let photos = [];
+                req.files.photos.forEach((element, i) => {
+
+                    let name = '';
+                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
+                        name += anonymous.id+'-'+i+'.jpg';
+                    }
+                    if(element.mimetype == 'image/png'){
+                        name += anonymous.id+'-'+i+'.png';
+                    }
+                    photos.push(name);
+                    element.mv(photoUploadPath+name, (err)=>{
+                        if(!err) anonymous.update({photos})
+                        else anonymous.pop();
+                    })
+
+
+                });
+
+            }
+        }
+        res.redirect('/my-restaurants');
     }
 
     static async edit(req, res, next){ //Devolver vista de editar
