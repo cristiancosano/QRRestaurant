@@ -5,15 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var restaurantsRouter = require('./routes/restaurants');
-var myRestaurantsRouter = require('./routes/myRestaurants');
-var loginRouter = require('./routes/login');
-var logoutRouter = require('./routes/logout');
-var registerRouter = require('./routes/register');
-var qrCodeRouter = require('./routes/qrCode');
-var searchRouter = require ('./routes/search');
-var aboutUsRouter = require('./routes/aboutUs');
+const indexRouter = require('./routes/index');
+const restaurantsRouter = require('./routes/restaurants');
+const myRestaurantsRouter = require('./routes/myRestaurants');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const registerRouter = require('./routes/register');
+const qrCodeRouter = require('./routes/qrCode');
+const searchRouter = require ('./routes/search');
+const aboutUsRouter = require('./routes/aboutUs');
+const foodTypeRouter = require('./routes/foodType');
+const globalVariables = require('./middlewares/globalVariables');
 
 
 require('./models/relationships')
@@ -36,15 +38,12 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-app.use((req, res, next)=>{
-  res.locals.session = req.session;
-  res.locals.currentUrl = req.url;
-  next();
-})
+app.use(globalVariables)
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);
 app.use('/my-restaurants', myRestaurantsRouter);
 app.use('/about-us', aboutUsRouter);
+app.use('/foodType', foodTypeRouter);
 app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);

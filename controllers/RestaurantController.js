@@ -21,12 +21,19 @@ class RestaurantController{
         res.render('restaurant/index', {restaurants, foodTypes, danger, message});
     }
 
+    static async indexWithFoodType(req, res, next){
+        let params = req.params;
+
+        let restaurants = await restaurantModel.findAll({where: {foodTypeId: params.id}});
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        res.render('restaurant/index', {restaurants, foodTypes});
+    }
+
     static async show(req, res, next){
         let params = req.params;
         let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
         let data = restaurant.toJSON();
         data.average = await restaurant.getAverage();
-        console.log(data)
         res.render('restaurant/show', data);
     }
 
@@ -66,8 +73,6 @@ class RestaurantController{
     static async edit(req, res, next){ //Devolver vista de editar
         let params = req.params;
         let restaurant = await restaurantModel.findOne({where: {id: params.id}})
-        console.log(restaurant)
-        console.log(restaurant.toJSON())
         res.render('restaurant/edit', restaurant.toJSON());
     }
 
