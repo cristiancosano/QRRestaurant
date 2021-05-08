@@ -23,7 +23,7 @@
                   Tipos de comida
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <% foodTypes.forEach( foodType => { 
+                  <% primaryMenuFoodTypes.forEach( foodType => { 
                     if(foodType.restaurants.length > 0){
                   %>
                   <li><a class="dropdown-item" href="/foodType/<%= foodType.id %>"><%= foodType.name %></a></li>
