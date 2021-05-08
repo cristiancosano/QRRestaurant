@@ -49,6 +49,7 @@ class RestaurantController{
 
     static async create(req, res, next){
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        console.log(foodTypes)
         res.render('restaurant/create', {foodTypes});
     }
 
