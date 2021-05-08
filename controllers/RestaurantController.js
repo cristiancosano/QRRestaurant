@@ -46,7 +46,9 @@ class RestaurantController{
     }
 
     static async store(req, res, next){ //Almacenar nuevo restaurante
-        let params = req.body;
+        let form = req.body;
+        console.log(form.foodType);
+        /*
         const anonymous = await restaurantModel.create({ 
             name:form.name, 
             address:form.address, 
@@ -57,9 +59,11 @@ class RestaurantController{
             menu:'menu',
             photos:'photo',
             userDni:'dni',
-            foodType:form.foodType.id
+            foodType:form.foodType
         });
-        res.render('restaurant/my-restaurants', {message: 'Restaurante Creado Correctamente'});
+        */
+        res.redirect('/my-restaurants');
+        //res.render('restaurant/my-restaurants', {message: 'Restaurante Creado Correctamente'});
     }
 
     static async edit(req, res, next){ //Devolver vista de editar
