@@ -1,16 +1,20 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
+const foodTypeModel = require('../models/FoodType').FoodType
+
 class RestaurantController{
 
     static async index(req, res, next){
         let restaurants = await restaurantModel.findAll();
-        res.render('restaurant/index', {restaurants});
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        res.render('restaurant/index', {restaurants, foodTypes});
     }
 
     static async show(req, res, next){
         let params = req.params;
-        let restaurant = await restaurantModel.findOne({where: {id: params.id}})
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
         let data = restaurant.toJSON();
         data.average = await restaurant.getAverage();
+        console.log(data)
         res.render('restaurant/show', data);
     }
 

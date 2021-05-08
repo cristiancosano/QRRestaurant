@@ -1,24 +1,23 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
+const foodTypeModel = require('../models/FoodType').FoodType
+
 const { Op } = require("sequelize");
 class SearchController{
-
-    static async index(req, res, next){
-        let restaurants = await restaurantModel.findAll();
-        res.render('restaurant/index', {restaurants});
-    }
  
     static async findByName(req, res, next){        
         let form = req.body
         let restaurantName = form.restaurantName;
         let restaurants = await restaurantModel.findAll({where: {name: restaurantName}});
-        res.render('restaurant/index', {restaurants});
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        res.render('restaurant/index', {restaurants, foodTypes});
     }
 
     static async findByFoodType(req, res, next){
         let form = req.body
         let restaurantFood = form.restaurantFood;
-        let restaurants = await restaurantModel.findAll({where:{category: restaurantFood}});
-        res.render('restaurant/index',{restaurants});
+        let restaurants = await restaurantModel.findAll({where:{foodTypeId: restaurantFood}});
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        res.render('restaurant/index',{restaurants, foodTypes});
 
     }
 

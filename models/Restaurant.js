@@ -25,7 +25,6 @@ Restaurant.init({
   city: DataTypes.STRING,
   description: DataTypes.STRING,
   menu: DataTypes.STRING,
-  category: DataTypes.STRING,
   photos: DataTypes.JSON
 
 }, { sequelize, modelName: 'restaurant', tableName: 'restaurant'});
