@@ -27,15 +27,11 @@ class SessionController{
         }
     }
     // Cierra la sesion
-<<<<<<< HEAD
-    static logout(req, res, next){   
-=======
     static logout(req, res, next){
         req.session.destroy();
         res.cookie('message', 'Has cerrado sesión correctamente. Hasta pronto! 👋🏻')
         res.redirect('/');
         res.redirect('/');
->>>>>>> d3f20814eacb57dc417215c2bd1dc954e0583074
     }
 }
 
