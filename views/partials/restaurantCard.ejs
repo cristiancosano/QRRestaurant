@@ -2,7 +2,7 @@
     <div class="row border rounded m-0 shadow bg-white mt-4">
         <div class="col-md-3 p-0">
             <a href="/restaurants/<%= id %>">
-                <img src="assets/img/averroes.jpg" class="img-thumbnail w-100 border-0 bg-white">
+                <img src="/assets/img/<%= photos[0] %>" class="img-thumbnail w-100 border-0 bg-white">
             </a>
         </div>
         <div class="col-md-9 pt-4 pb-4">
@@ -18,11 +18,23 @@
 
             <a href="/restaurants/<%= id %>/edit"
                 class="btn btn-success btn-sm "><i class="bi bi-pencil-square"></i> Editar restaurante</a>
-            <form action="/restaurants/<%= id %>/delete" method="post" style="display: inline;">
-                <input type="hidden" name="name" value="<%= name %>">
-                <input type="hidden" name="id" value="<%= id %>">
-                <button type="submit" class="btn btn-danger btn-sm">Eliminar restaurante</button>
-            </form>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#restaurant<%=id%>">
+                <i class="bi bi-trash"></i> Eliminar restaurante
+            </button>
+            
+            <%- include('./modal', {
+                id: 'restaurant'+id, 
+                title: 'Eliminar "'+name+'"',
+                description: '¿Seguro que quieres eliminar el restaurante '+name+'?',
+                cancel: 'Cancelar',
+                confirm: 'Si, eliminar',
+                confirmColor: 'danger',
+                cancelColor: 'secondary',
+                action: '/restaurants/'+id+'/delete',
+                method: 'post'
+            })%>
         </div>
         <% } %>
     </div>

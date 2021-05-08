@@ -21,10 +21,10 @@ Restaurant.init({
   name: {type: DataTypes.STRING},
   address: DataTypes.STRING,
   capacity: DataTypes.INTEGER,
+  freeSeats: DataTypes.INTEGER,
   city: DataTypes.STRING,
   description: DataTypes.STRING,
   menu: DataTypes.STRING,
-  category: DataTypes.STRING,
   photos: DataTypes.JSON
 
 }, { sequelize, modelName: 'restaurant', tableName: 'restaurant'});

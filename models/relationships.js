@@ -3,6 +3,8 @@ const { Restaurant } = require("./Restaurant");
 const { User } = require("./User");
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require("./SequelizeManager");
+const { FoodType } = require("./FoodType");
+const { History } = require("./History");
 
 
 const sequelize = SequelizeManager.getInstance()
@@ -23,10 +25,21 @@ User.hasMany(Restaurant, {
 Restaurant.belongsTo(User);
 Rating.belongsTo(User);
 
+FoodType.hasMany(Restaurant);
+Restaurant.belongsTo(FoodType);
+
+Restaurant.hasMany(History);
+History.belongsTo(Restaurant)
+
+User.hasMany(History)
+History.belongsTo(User)
+
 
 async function migrateSeed(){
+    await History.drop();
     await Rating.drop();
     await Restaurant.drop();
+    await FoodType.drop();
     await User.drop();
     await sequelize.sync()
 
@@ -36,9 +49,16 @@ async function migrateSeed(){
     User.create({dni: '12345678D', email: 'jmgil@gmail.com', password: 'password4'})
     User.create({dni: '12345678E', email: 'antoniolrj4@gmail.com', password: 'password5'})
 
-    Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', category: 'Bar rancio', photos: '["averroes.jpg"]', userDni: '12345678A'});
-    Restaurant.create({name: 'Casa Juan', address: 'Arcangel, s/n', capacity: 32, city: 'Sevilla', description: 'Un lugar muy feo', menu: 'averroes.pdf', category: 'Bar feo', photos: '["averroes.jpg"]', userDni: '12345678B'});
-    Restaurant.create({name: 'Casa Miguel', address: 'El Tablero, s/n', capacity: 42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', category: 'Bar de pijos', photos: '["averroes.jpg"]', userDni: '12345678C'});
+    FoodType.create({name: 'Asiática'});
+    FoodType.create({name: 'Brasileña'});
+    FoodType.create({name: 'Mediterránea'});
+    FoodType.create({name: 'Bar de tapas'});
+    FoodType.create({name: 'Española'});
+    FoodType.create({name: 'Vanguardista'});
+
+    Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+    Restaurant.create({name: 'Casa Juan', address: 'Arcangel, s/n', capacity: 32, freeSeats:32, city: 'Sevilla', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
+    Restaurant.create({name: 'Casa Miguel', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678C', foodTypeId: 5});
 
 
     Rating.create({rating: 1, restaurantId: 1, userDni: '12345678A'})
@@ -65,4 +85,6 @@ async function migrateSeed(){
 };
 
 
-//migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+(async function(){
+    //await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+})();

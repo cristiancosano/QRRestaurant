@@ -5,18 +5,24 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var restaurantsRouter = require('./routes/restaurants');
-var myRestaurantsRouter = require('./routes/myRestaurants');
-var loginRouter = require('./routes/login');
-var logoutRouter = require('./routes/logout');
-var registerRouter = require('./routes/register');
-var qrCodeRouter = require('./routes/qrCode')
+const indexRouter = require('./routes/index');
+const restaurantsRouter = require('./routes/restaurants');
+const myRestaurantsRouter = require('./routes/myRestaurants');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
+const registerRouter = require('./routes/register');
+const qrCodeRouter = require('./routes/qrCode');
+const searchRouter = require ('./routes/search');
+const aboutUsRouter = require('./routes/aboutUs');
+const foodTypeRouter = require('./routes/foodType');
+const globalVariables = require('./middlewares/globalVariables');
+
 
 require('./models/relationships')
 
 
 var app = express();
+//let checkAdminUser = require('./middlewares/checkAdminUser')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,19 +34,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'qrrestauran_key',
+  secret: 'qrrestaurant_key',
   resave: false,
   saveUninitialized: false
 }));
-
+app.use(globalVariables)
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);
 app.use('/my-restaurants', myRestaurantsRouter);
+app.use('/about-us', aboutUsRouter);
+app.use('/foodType', foodTypeRouter);
 app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
-
+app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
