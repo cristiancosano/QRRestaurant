@@ -37,6 +37,7 @@ app.use(session({
 }));
 app.use((req, res, next)=>{
   res.locals.session = req.session;
+  res.locals.currentUrl = req.url;
   next();
 })
 app.use('/', indexRouter);
