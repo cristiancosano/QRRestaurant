@@ -16,9 +16,9 @@
             <input type="text" name="city" id="city" placeholder="Localidad" class="form-control mt-3">
             <input type="text" name="description" id="description" placeholder="Descripción" class="form-control mt-3">
             <label for="typeOfFood" class="form-label mt-3">Tipo de comida:</label>
-            <select id="typeOfFood" class="form-select" multiple aria-label="multiple select example">
+            <select id="typeOfFood" class="form-select" name="foodType">
                 <% foodTypes.forEach(foodType => {%>
-                        <option name="foodType" value="<%=foodType.id%>"><%=foodType.name%></option>
+                        <option value="<%=foodType.id%>"><%=foodType.name%></option>
                 <%}); %>
             </select>
             <div class="mt-3">

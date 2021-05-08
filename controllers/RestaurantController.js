@@ -47,7 +47,6 @@ class RestaurantController{
 
     static async store(req, res, next){ //Almacenar nuevo restaurante
         let form = req.body;
-        console.log(form.foodType);
         /*
         const anonymous = await restaurantModel.create({ 
             name:form.name, 
