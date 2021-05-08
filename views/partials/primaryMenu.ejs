@@ -15,12 +15,14 @@
               <li class="nav-item">
                 <a class="nav-link" href="/my-restaurants">Mis restaurantes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link d-lg-none" href="login.html">Iniciar Sesión</a>
-              </li>
         </ul>
         <form class="d-flex">
+          <% if(session.currentUser==undefined){ %>
             <a href="/login" class="btn btn-primary d-md-none d-lg-inline me-2">Iniciar Sesión</a>
+          <% } else{%>
+            <a href="/logout" class="btn btn-danger d-md-none d-lg-inline me-2">Cerrar Sesión</a>
+          <% } %>
+
             <a href="/qr-code" class="btn btn-primary d-md-none d-lg-inline">Escanear QR</a>
         </form>
       </div>

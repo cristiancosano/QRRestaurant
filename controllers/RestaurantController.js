@@ -4,9 +4,21 @@ const foodTypeModel = require('../models/FoodType').FoodType
 class RestaurantController{
 
     static async index(req, res, next){
+        var danger = undefined
+        if(req.cookies.danger){
+            var danger = req.cookies.danger;
+            res.clearCookie('danger');
+        }
+
+        var message = undefined
+        if(req.cookies.message){
+            var message = req.cookies.message;
+            res.clearCookie('message');
+        }
+
         let restaurants = await restaurantModel.findAll();
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
-        res.render('restaurant/index', {restaurants, foodTypes});
+        res.render('restaurant/index', {restaurants, foodTypes, danger, message});
     }
 
     static async show(req, res, next){

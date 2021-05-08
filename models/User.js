@@ -6,8 +6,8 @@ class User extends Model {
 User.init({
   dni: {type: DataTypes.STRING, primaryKey: true},
   email: DataTypes.STRING,
-  password: DataTypes.STRING
-
+  password: DataTypes.STRING,
+  admin: {type: DataTypes.BOOLEAN, defaultValue: false}
 }, { sequelize, modelName: 'user', tableName: 'user' });
 
 module.exports = {

@@ -14,10 +14,12 @@ var registerRouter = require('./routes/register');
 var qrCodeRouter = require('./routes/qrCode');
 var searchRouter = require ('./routes/search');
 
+
 require('./models/relationships')
 
 
 var app = express();
+//let checkAdminUser = require('./middlewares/checkAdminUser')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,13 +31,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'qrrestauran_key',
+  secret: 'qrrestaurant_key',
   resave: false,
   saveUninitialized: false
 }));
-
+app.use((req, res, next)=>{
+  res.locals.session = req.session;
+  next();
+})
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);
+//app.use('/my-restaurants', checkAdminUser);
 app.use('/my-restaurants', myRestaurantsRouter);
 app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);

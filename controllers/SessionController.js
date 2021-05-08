@@ -18,16 +18,17 @@ class SessionController{
         let params = req.body;
         let user = await userModel.findOne({where: {email: params.email, password: params.password}})
         if(user == null){
-            res.cookie('message', 'User or password not correct')
+            res.cookie('message', 'Email y contraseña incorrecta.')
             res.redirect('/login');
         }else{
             req.session.currentUser = user;
+            res.cookie('message', 'Has iniciado sesión correctamente. Nos alegra tenerte por aquí de nuevo 😉')
             res.redirect('/');
         }
     }
     // Cierra la sesion
     static logout(req, res, next){
-        
+        req.session.destroy();
     }
 }
 

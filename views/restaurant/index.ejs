@@ -7,6 +7,14 @@
 <body>
   <%- include('../partials/primaryMenu') %>
   <div class="container">
+    <% if(typeof danger != 'undefined'){ %>
+      <%- include('../partials/alert', {type: 'danger', message: danger}) %>
+    <% } %>
+
+    <% if(typeof message != 'undefined'){ %>
+      <%- include('../partials/alert', {type: 'success', message}) %>
+    <% } %>
+
     <%- include('../partials/search') %>
     <% restaurants.forEach(restaurant => {%>
         <%- include('../partials/restaurantCard', {
