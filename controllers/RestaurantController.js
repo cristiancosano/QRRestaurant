@@ -31,6 +31,8 @@ class RestaurantController{
     static async edit(req, res, next){ //Devolver vista de editar
         let params = req.params;
         let restaurant = await restaurantModel.findOne({where: {id: params.id}})
+        console.log(restaurant)
+        console.log(restaurant.toJSON())
         res.render('restaurant/edit', restaurant.toJSON());
     }
 

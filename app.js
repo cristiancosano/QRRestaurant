@@ -11,7 +11,8 @@ var myRestaurantsRouter = require('./routes/myRestaurants');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var registerRouter = require('./routes/register');
-var qrCodeRouter = require('./routes/qrCode')
+var qrCodeRouter = require('./routes/qrCode');
+var searchRouter = require ('./routes/search');
 
 require('./models/relationships')
 
@@ -40,7 +41,7 @@ app.use('/qr-code', qrCodeRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
-
+app.use('/search', searchRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

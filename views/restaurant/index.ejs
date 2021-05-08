@@ -6,9 +6,25 @@
 </head>
 <body>
   <%- include('../partials/primaryMenu') %>
-
-
   <div class="container">
+    <form action="/search/name" method="post"> 
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Búsqueda por Nombre del Restaurante" name="restaurantName">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </div>    
+    </form>    
+    <form action="/search/food" method="post"> 
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Búsqueda por Comida del Restaurante" name="restaurantFood">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </div>
+    </form>
+    <form action="/search/location" method="post"> 
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Búsqueda por Localización del Restaurante" name="restaurantLocation">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+      </div>
+    </form>
     <% restaurants.forEach(restaurant => {%>
         <%- include('../partials/restaurantCard', {
           id: restaurant.id,
@@ -22,6 +38,8 @@
           updatedAt: restaurant.updatedAt
         }) %>
     <%}) %>
+
+
   </div>
 
     
