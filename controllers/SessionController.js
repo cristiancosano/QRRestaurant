@@ -26,8 +26,7 @@ class SessionController{
         }
     }
     // Cierra la sesion
-    static logout(req, res, next){
-        
+    static logout(req, res, next){   
     }
 }
 
