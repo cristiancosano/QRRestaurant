@@ -66,16 +66,17 @@ class RestaurantController{
             userDni:req.session.currentUser.dni,
             foodTypeId:form.foodType
         });
-        res.render('restaurant/my-restaurants');
-        //res.render('restaurant/my-restaurants', {message: 'Restaurante Creado Correctamente'});
+        res.cookie('message', 'El restaurante ' + form.name + ' ha sido añadido correctamente!')
+        res.redirect('/my-restaurants');
     }
 
     static async edit(req, res, next){ //Devolver vista de editar
         let params = req.params;
         let foodTypes = await foodTypeModel.findAll();
         let restaurant = await restaurantModel.findOne({where: {id: params.id}});
-        
-        res.render('restaurant/edit', restaurant.toJSON());
+        console.log(foodTypes);
+
+        res.render('restaurant/edit', {restaurant, foodTypes});
     }
 
     static async update(req, res, next){ //Modificar restaurante
