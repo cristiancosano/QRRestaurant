@@ -49,6 +49,7 @@ class RestaurantController{
         let params = req.params;
         let form = req.body;
 
+
         //Actualizar con restaurantModel params.id
         
         res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
@@ -65,6 +66,37 @@ class RestaurantController{
         res.cookie('message', 'El restaurante '+ restaurant.name +' ha sido eliminado correctamente!')
         res.redirect('/my-restaurants');
     }
+
+
+
+    
+    static async updateFreeSeats(req, res, next){ //Modificar restaurante
+        let params = req.params;
+        let form = req.body;
+
+        //Actualizar con restaurantModel params.id
+        if(params.companions - form.freeSeats <= 0)
+        {
+           let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}})
+            await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats - params.companions} , { where:  {id: params.restaurant}})
+            res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
+            res.redirect('/my-restaurants');
+        }
+        else
+        {
+
+            res.redirect('/esperarCola_MostrarAlternativos');
+
+
+        }
+    }
+
+
+
+
+
+
+
 
 }
 
