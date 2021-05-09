@@ -43,7 +43,7 @@
           <% } %>
             <% if(currentUrl == '/my-restaurants'){ %>
               <a href="/restaurants/create" class="btn btn-success d-md-none d-lg-inline"><i class="bi bi-plus-circle"></i> Añadir Restaurante</a>
-              <% } else{%>
+              <% } else if(session.currentUser!=undefined){%>
               <a href="/qr-code" class="btn btn-primary d-md-none d-lg-inline">Escanear QR</a>
             <% } %>
         </form>
