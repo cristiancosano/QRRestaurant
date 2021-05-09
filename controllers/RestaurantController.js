@@ -43,7 +43,7 @@ class RestaurantController{
             var message = req.cookies.message;
             res.clearCookie('message');
         }
-        let restaurants = await restaurantModel.findAll();
+        let restaurants = await restaurantModel.findAll({where: {userDni: req.session.currentUser.dni}});
         res.render('restaurant/manage', {restaurants, message});
     }
 
@@ -107,18 +107,62 @@ class RestaurantController{
         let params = req.params;
         let foodTypes = await foodTypeModel.findAll();
         let restaurant = await restaurantModel.findOne({where: {id: params.id}});
-        console.log(foodTypes);
-
         res.render('restaurant/edit', {restaurant, foodTypes});
     }
 
     static async update(req, res, next){ //Modificar restaurante
         let params = req.params;
         let form = req.body;
-
-
-        //Actualizar con restaurantModel params.id
         
+        //Actualizar con restaurantModel params.id
+
+        const anonymous = await restaurantModel.update({
+            name:form.name, 
+            address:form.address, 
+            capacity:form.capacity, 
+            freeSeats:form.capacity, 
+            city:form.city, 
+            description:form.description, 
+            menu:'',
+            photos:'',
+            userDni:req.session.currentUser.dni,
+            foodTypeId:form.foodType
+        },{where: {id: params.id}, include: restaurantModel});
+
+        if(req.files){
+            if(req.files.restaurantMenu && req.files.restaurantMenu.mimetype=='application/pdf'){
+                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + anonymous.id+'.pdf';
+                req.files.restaurantMenu.mv(menuUploadPath, (err)=>{
+                    if(!err){
+                        anonymous.update({menu: anonymous.id+'.pdf'});
+                    }
+                })
+            }
+            if(req.files.photos && req.files.photos.length > 0){
+                let photoUploadPath = global.appRoot + '/public/assets/img/';
+                let photos = [];
+                req.files.photos.forEach((element, i) => {
+
+                    let name = '';
+                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
+                        name += anonymous.id+'-'+i+'.jpg';
+                    }
+                    if(element.mimetype == 'image/png'){
+                        name += anonymous.id+'-'+i+'.png';
+                    }
+                    photos.push(name);
+                    element.mv(photoUploadPath+name, (err)=>{
+                        if(!err) anonymous.update({photos})
+                        else anonymous.pop();
+                    })
+
+
+                });
+
+            }
+        }
+
+
         res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
         res.redirect('/my-restaurants');
     }
