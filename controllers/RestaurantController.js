@@ -187,7 +187,7 @@ class RestaurantController{
 
         //Actualizar con restaurantModel params.id
       
-        let history = await HistoryModel.findAll({ attributes: ['updatedAt']} , {where: {restaurantId: params.restaurant}});
+        let history = await HistoryModel.findOne({ attributes: ['createdAt','updatedAt']} , {where: {restaurantId: params.restaurant}, order: [['createdAt', 'ASC']]});
         if(history.updatedAt != "")
         {
 
@@ -211,10 +211,11 @@ class RestaurantController{
     else
     {
         let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}});
-
+        let NEWDATETIME = Date.now();
         await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats + params.companions} , { where:  {id: params.restaurant}})
-        await HistoryModel.update({ updateAt: NEWDATETIME} , {where: {restaurantId: params.restaurant}})
-
+        await HistoryModel.update({ updateAt: NEWDATETIME} , {where: {restaurantId: params.restaurant, createdAt: history.createdAt}})
+        res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
+        
 
     }
 
