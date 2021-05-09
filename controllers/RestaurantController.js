@@ -186,21 +186,41 @@ class RestaurantController{
         let form = req.body;
 
         //Actualizar con restaurantModel params.id
-        if(params.companions - form.freeSeats <= 0)
-        {
-           let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}})
-            await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats - params.companions} , { where:  {id: params.restaurant}})
-            res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
-            res.redirect('/my-restaurants');
-        }
-        else
+      
+        let history = await HistoryModel.findAll({ attributes: ['updatedAt']} , {where: {restaurantId: params.restaurant}});
+        if(history.updatedAt != "")
         {
 
-            res.redirect('/esperarCola_MostrarAlternativos');
+        
+            let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}});
+             if(params.companions - restaurant.freeSeats <= 0)
+             {
+                 await HistoryModel.create({ companions: params.companions, restaurantId: params.restaurant, userDni: req.session.currentUser.dni})
+                 await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats - params.companions} , { where:  {id: params.restaurant}})
+                 res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
+                 res.redirect('/my-restaurants');
 
+             }
+             else
+              {
 
-        }
+             res.redirect('/esperarCola_MostrarAlternativos');
+
+                }
     }
+    else
+    {
+        let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}});
+
+        await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats + params.companions} , { where:  {id: params.restaurant}})
+        await HistoryModel.update({ updateAt: NEWDATETIME} , {where: {restaurantId: params.restaurant}})
+
+
+    }
+
+
+    }
+
 
 
 
