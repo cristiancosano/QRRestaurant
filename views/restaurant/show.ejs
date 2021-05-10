@@ -30,7 +30,6 @@
                     <div class="card text-dark bg-light mb-3">
                     <div class="card-header">Valoraciones</div>
                     <div class="card-body">
-                      
 
                         <h5 class="card-title text-center">
                             <% for(var i=0; i<5; i++){ %>     
@@ -38,7 +37,14 @@
                             <% } %>
                      
                         </h5>
-                        <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1"> estrellas</p>
+                        <form action="" method="post">
+                            <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1" name="rating"> estrellas</p>
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit">Valorar</button>
+                            </div>
+
+                        </form>
+
                     </div>
                     </div>
                     <div class="card text-dark bg-light mb-3">
