@@ -12,4 +12,7 @@ router.get('/:id/edit', checkAdminUser, (req, res, next) => RestaurantController
 router.post('/:id/update', checkAdminUser, (req, res, next) => RestaurantController.update(req, res, next));
 router.post('/:id/delete', checkAdminUser, (req, res, next) => RestaurantController.delete(req, res, next));
 
+router.get('/update', checkAdminUser, (req, res, next) => RestaurantController.updateFreeSeats(req, res, next));
+
+
 module.exports = router;

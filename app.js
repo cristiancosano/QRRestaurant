@@ -16,13 +16,17 @@ const searchRouter = require ('./routes/search');
 const aboutUsRouter = require('./routes/aboutUs');
 const foodTypeRouter = require('./routes/foodType');
 const globalVariables = require('./middlewares/globalVariables');
+const fileUpload = require('express-fileupload');
+
+global.appRoot = path.resolve(__dirname);
+
+
 
 
 require('./models/relationships')
 
 
 var app = express();
-//let checkAdminUser = require('./middlewares/checkAdminUser')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +42,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(fileUpload({debug: true}));
 app.use(globalVariables)
 app.use('/', indexRouter);
 app.use('/restaurants', restaurantsRouter);

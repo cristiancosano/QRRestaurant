@@ -2,7 +2,7 @@ const qrcode = require('qrcode')
 class QRCodeController{
 
     static async create(req, res, next){
-        res.render('qrCode/create');
+        res.render('qrcode/create');
     }
 
     static async show(req,res,next){

@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <%- include('../partials/header') %>
+  <%- include('../partials/header') %>
     <title>QrRestaurant</title>
 </head>
+
 <body>
   <%- include('../partials/primaryMenu') %>
 
-  <div class="container">
-    <form action="/qr-code" method="post">
-      <div class="mt-5 text-center" style="max-width: 400px; margin: 0 auto;" id="companionQuestion">
-        <h3>¿Vienes acompañado?</h3>
-        <div class="d-grid gap-2">
-          <button class="btn btn-success" id="yesCompanion" type="button">Si</button>
-          <button class="btn btn-danger" id="noCompanion" type="submit">No</button>
+    <div class="container">
+      <form action="/qr-code" method="post">
+        <div class="mt-5 text-center" style="max-width: 400px; margin: 0 auto;" id="companionQuestion">
+          <h3>¿Vienes acompañado?</h3>
+          <div class="d-grid gap-2">
+            <button class="btn btn-success" id="yesCompanion" type="button">Si</button>
+            <button class="btn btn-danger" id="noCompanion" type="submit">No</button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
 
-    <form action="/qr-code" method="post">
-      <div class="mt-5 d-none text-center" style="max-width: 400px; margin: 0 auto;" id="companionInput">
-        <label for="companion" class="h3 d-block">¿Cuantos acompañantes trae?</label>
-        <input type="number" id="companion" name="nAcomp" placeholder="Numero de acompañantes" class="form-control">
-        <div class="d-grid gap-2 mb-3">
-          <button class="btn btn-primary mt-3" id="generateQRButton" type="submit">Generar QR</button>
-          <a class="btn btn-danger" href="/qr-code">Volver atrás</a>
+      <form action="/qr-code" method="post">
+        <div class="mt-5 d-none text-center" style="max-width: 400px; margin: 0 auto;" id="companionInput">
+          <label for="companion" class="h3 d-block">¿Cuantos acompañantes trae?</label>
+          <input type="number" id="companion" name="nAcomp" placeholder="Numero de acompañantes" class="form-control">
+          <div class="d-grid gap-2 mb-3">
+            <button class="btn btn-primary mt-3" id="generateQRButton" type="submit">Generar QR</button>
+            <a class="btn btn-danger" href="/qr-code">Volver atrás</a>
+          </div>
         </div>
-      </div>
-    </form> 
-  </div>
+      </form>
+    </div>
 
 
   <%- include('../partials/footer') %>
   <%- include('../partials/scripts') %>
+
   <script>
     let yesCompanion = document.getElementById("yesCompanion");
     let companionQuestion = document.getElementById("companionQuestion")
     let companionInput = document.getElementById("companionInput")
- 
-    yesCompanion.addEventListener("click", ()=>{
+
+    yesCompanion.addEventListener("click", () => {
       companionQuestion.classList.add("d-none")
       companionInput.classList.remove("d-none")
     })
-
   </script>
 
 </body>
+
 </html>
