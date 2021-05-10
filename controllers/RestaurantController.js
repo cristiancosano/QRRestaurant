@@ -74,17 +74,13 @@ class RestaurantController{
         let params = req.params;
         let foodTypes = await foodTypeModel.findAll();
         let restaurant = await restaurantModel.findOne({where: {id: params.id}});
-        
-        res.render('restaurant/edit', restaurant.toJSON());
+        res.render('restaurant/edit', {restaurant, foodTypes});
     }
 
     static async update(req, res, next){ //Modificar restaurante
         let params = req.params;
         let form = req.body;
-
-
         //Actualizar con restaurantModel params.id
-        
         res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
         res.redirect('/my-restaurants');
     }
@@ -99,9 +95,6 @@ class RestaurantController{
         res.cookie('message', 'El restaurante '+ restaurant.name +' ha sido eliminado correctamente!')
         res.redirect('/my-restaurants');
     }
-
-
-
     
     static async updateFreeSeats(req, res, next){ //Modificar restaurante
         let params = req.params;
@@ -123,12 +116,6 @@ class RestaurantController{
 
         }
     }
-
-
-
-
-
-
 
 
 }
