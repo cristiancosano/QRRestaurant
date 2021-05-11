@@ -2,6 +2,7 @@ const restaurantModel = require('../models/Restaurant').Restaurant
 const foodTypeModel = require('../models/FoodType').FoodType
 const historyModel = require('../models/History').History
 const { Op } = require("sequelize");
+const { Sockets } = require('../sockets/qrScanner/socket')
 
 class RestaurantController{
 
@@ -185,7 +186,6 @@ class RestaurantController{
     
     static async updateFreeSeats(req, res, next){ //Modificar restaurante
         let form = req.query;
-      
         let history = await historyModel.findOne({
             where: {
                 [Op.and]: [{restaurantId: form.restaurant}, {userDni: form.user}]
@@ -201,8 +201,10 @@ class RestaurantController{
                  history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
                  await restaurant.update({ capacity: restaurant.capacity, freeSeats: (restaurant.freeSeats - form.companions - 1)})
                  res.send({status: true, message: "All ok!", action: 'Entry'});
-            }
+                 Sockets.emit(form.user, {action: 'entry', status: 'Success', restaurant: form.restaurant})
+                }
             else{ // No hay aforo disponible
+                Sockets.emit(form.user, {action: 'entry', status: 'capacityExceeded', restaurant: form.restaurant})
                 res.send({status: false, message: "The restaurant doesn't have free seats. Showing alternatives to user."})
             }
         }
@@ -212,12 +214,24 @@ class RestaurantController{
             await history.update({ companions: 1000 });
             await history.update({companions})
             res.send({status: true, message: "All ok!", action: 'Exit'});
+            Sockets.emit(form.user, {action: 'exit', status: 'Success', restaurant: form.restaurant})
         }
         else{ //Algo no es válido
 
         }
 
 
+    }
+
+    static async alternatives(req, res, next){
+        let params = req.params;
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+        let restaurants = await restaurantModel.findAll({where: {
+            [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
+        }, include: foodTypeModel})
+        let data = restaurant.toJSON();
+        data.restaurants = restaurants;
+        res.render('restaurant/alternatives', data);
     }
 
 

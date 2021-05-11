@@ -7,6 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('qrrestaurant:server');
 var http = require('http');
+const socketIO = require('socket.io')
+const {Sockets} = require('../sockets/qrScanner/socket')
+
+
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +24,11 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+
+/* setup socket.io */
+var io = socketIO(server);
+Sockets.setIO(io);
 
 /**
  * Listen on provided port, on all network interfaces.

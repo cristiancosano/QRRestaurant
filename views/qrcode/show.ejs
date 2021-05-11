@@ -11,12 +11,27 @@
     <div class="mt-5 text-center" style="max-width: 400px; margin: 0 auto;">
       <h3 class="mt-5">Pasa el código QR por el lector: </h3>
       <img src="<%= qrData %>" width="100%">
+      <input type="hidden" value="<%= session.currentUser.dni %>" id="dni"/>
       <div class="d-grid gap-2 mb-3">
         <a class="btn btn-danger mt-3" href="/qr-code">Volver atrás</a>
       </div>
     </div>
     <%- include('../partials/footer') %>
     <%- include('../partials/scripts') %>
+    <script src="https://cdn.socket.io/4.0.2/socket.io.min.js" integrity="sha384-Bkt72xz1toXkj/oEiOgkQwWKbvNYxTNWMqdon3ejP6gwq53zSo48nW5xACmeDV0F" crossorigin="anonymous"></script>
+    <script>
+        let dni = document.getElementById('dni');
+        const socket = io();
+        socket.on('success', (data) => console.log(data))
+        socket.on('error', (data) => console.log(data))
+        socket.on('qr', (data) => {
+          console.log(data);
+          if(data.status == 'capacityExceeded'){
+            location.href = '/restaurants/'+data.restaurant+'/alternatives';
+          }
+        })
+        socket.emit('init', {dni: dni.value})
+    </script>
 </body>
 
 </html>
