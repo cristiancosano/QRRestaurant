@@ -1,5 +1,7 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
 const foodTypeModel = require('../models/FoodType').FoodType
+const historyModel = require('../models/History').History
+const { Op } = require("sequelize");
 
 class RestaurantController{
 
@@ -182,42 +184,38 @@ class RestaurantController{
 
     
     static async updateFreeSeats(req, res, next){ //Modificar restaurante
-        let params = req.params;
-        let form = req.body;
-
-        //Actualizar con restaurantModel params.id
+        let form = req.query;
       
-        let history = await HistoryModel.findOne({ attributes: ['createdAt','updatedAt']} , {where: {restaurantId: params.restaurant}, order: [['createdAt', 'ASC']]});
-        if(history.updatedAt != "")
-        {
+        let history = await historyModel.findOne({
+            where: {
+                [Op.and]: [{restaurantId: form.restaurant}, {userDni: form.user}]
+            },
+            order: [['createdAt', 'DESC']]
+        });
 
-        
-            let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}});
-             if(params.companions - restaurant.freeSeats <= 0)
-             {
-                 await HistoryModel.create({ companions: params.companions, restaurantId: params.restaurant, userDni: req.session.currentUser.dni})
-                 await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats - params.companions} , { where:  {id: params.restaurant}})
-                 res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
-                 res.redirect('/my-restaurants');
+        let restaurant = await restaurantModel.findOne({where: {id: form.restaurant}});
 
-             }
-             else
-              {
+        if(history == null ||  history.createdAt.getTime() != history.updatedAt.getTime()){ // El usuario intenta entrar
+            console.log('restaurant.length: '+ (restaurant.freeSeats - parseInt(form.companions)))
+            if(restaurant != null && restaurant.freeSeats - parseInt(form.companions) -1 >= 0){ // Hay aforo disponible
+                 history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
+                 await restaurant.update({ capacity: restaurant.capacity, freeSeats: (restaurant.freeSeats - form.companions - 1)})
+                 res.send({status: true, message: "All ok!", action: 'Entry'});
+            }
+            else{ // No hay aforo disponible
+                res.send({status: false, message: "The restaurant doesn't have free seats. Showing alternatives to user."})
+            }
+        }
+        else if(history != null){ 
+            await restaurant.update({freeSeats: restaurant.freeSeats + parseInt(form.companions) + 1});
+            const companions = history.companions;
+            await history.update({ companions: 1000 });
+            await history.update({companions})
+            res.send({status: true, message: "All ok!", action: 'Exit'});
+        }
+        else{ //Algo no es válido
 
-             res.redirect('/esperarCola_MostrarAlternativos');
-
-                }
-    }
-    else
-    {
-        let restaurant = await restaurantModel.findAll({ attributes: ['capacity' , 'freeSeats']}, {where: { id: params.restaurant}});
-        let NEWDATETIME = Date.now();
-        await restaurantModel.update({ capacity: restaurant.capacity , freeSeats: restaurant.freeSeats + params.companions} , { where:  {id: params.restaurant}})
-        await HistoryModel.update({ updateAt: NEWDATETIME} , {where: {restaurantId: params.restaurant, createdAt: history.createdAt}})
-        res.cookie('message', 'El restaurante '+ form.name +' ha sido actualizado correctamente!')
-        
-
-    }
+        }
 
 
     }
