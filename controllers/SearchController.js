@@ -21,9 +21,11 @@ class SearchController{
 
     }
 
-   /* static async findByLocation(req, res, next){
+   static async findByLocation(req, res, next){
         let form = req.body
         let restaurantLocation = form.restaurantLocation;
+        let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+
         let restaurants = await restaurantModel.findAll({
             where: {
               [Op.or]: [
@@ -32,9 +34,9 @@ class SearchController{
               ]
             }
           });
-        res.render('restaurant/index',{restaurants});
+        res.render('restaurant/index',{restaurants, foodTypes});
     }
-
+    /*
     static async findByRating(req, res, next){
         let form = req.body
         let restaurantRating = form.restaurantRating;
