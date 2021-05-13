@@ -46,8 +46,18 @@ async function migrateSeed(){
     //Prueba de creación de usuarios
 
     /*
+    let j=0;
     for(let i=0; i<100000; i++){
-        User.create({dni: i, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        j+1;
+        User.create({dni: j+1, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+2, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+3, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+4, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+5, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+6, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+7, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+8, email: 'pacoalmenara@gmail.com', password: 'password1'})
+        User.create({dni: j+9, email: 'pacoalmenara@gmail.com', password: 'password1'})
     }
     */
 
@@ -68,6 +78,14 @@ async function migrateSeed(){
 
     /*
     for(let i=0; i<100000; i++){
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
         Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
     }
     */
