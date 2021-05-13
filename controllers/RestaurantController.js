@@ -267,6 +267,8 @@ class RestaurantController{
 
     }
 
+
+    /*
     static async waitingQueue(req,res,next)
     {
        while(1)
@@ -297,7 +299,7 @@ class RestaurantController{
 
     }
 
-    
+    */
 
 
 
