@@ -9,7 +9,7 @@
         <form action="/search/food" method="post" id="foodTypeSearch" hidden> 
         <div class="input-group mb-3">
             <select name="restaurantFood" class="form-select" >
-                <% foodTypes.forEach(foodType => {
+                <% primaryMenuFoodTypes.forEach(foodType => {
                     if(foodType.restaurants.length > 0){
                 %>
                         <option value="<%=foodType.id%>"><%=foodType.name%></option>

@@ -52,6 +52,7 @@ class RestaurantController{
         data.average = await restaurant.getAverage();
         data.message = message;
         data.danger = danger;
+
         res.render('restaurant/show', data);
     }
 
@@ -95,26 +96,39 @@ class RestaurantController{
                     }
                 })
             }
-            if(req.files.photos && req.files.photos.length > 0){
+            if(req.files.photos){
                 let photoUploadPath = global.appRoot + '/public/assets/img/';
                 let photos = [];
-                req.files.photos.forEach((element, i) => {
 
+                let getName = (element, position, id) => {
                     let name = '';
-                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
-                        name += restaurant.id+'-'+i+'.jpg';
-                    }
-                    if(element.mimetype == 'image/png'){
-                        name += restaurant.id+'-'+i+'.png';
-                    }
+                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg') name += id+'-'+position+'.jpg';
+                    else if(element.mimetype == 'image/png') name += id+'-'+position+'.png';
+                    return name;
+                }
+
+                if(req.files.photos.length > 0){
+                    req.files.photos.forEach((element, i) => {
+
+                        let name = getName(element, i, restaurant.id)
+                        photos.push(name);
+                        element.mv(photoUploadPath+name, (err)=>{
+                            if(!err) restaurant.update({photos})
+                            else restaurant.pop();
+                        })
+
+
+                    });
+                }
+                else{
+                    let element = req.files.photos;
+                    let name = getName(element, 0, restaurant.id);
                     photos.push(name);
                     element.mv(photoUploadPath+name, (err)=>{
                         if(!err) restaurant.update({photos})
                         else restaurant.pop();
                     })
-
-
-                });
+                }
 
             }
         }
@@ -145,6 +159,8 @@ class RestaurantController{
             foodTypeId:form.foodType
         });
 
+
+
         if(req.files){
             if(req.files.restaurantMenu && req.files.restaurantMenu.mimetype=='application/pdf'){
                 let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + params.id+'.pdf';
@@ -154,26 +170,39 @@ class RestaurantController{
                     }
                 })
             }
-            if(req.files.photos && req.files.photos.length > 0){
+            if(req.files.photos){
+                let getName = (element, position, id) => {
+                    let name = '';
+                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg') name += id+'-'+position+'.jpg';
+                    else if(element.mimetype == 'image/png') name += id+'-'+position+'.png';
+                    return name;
+                }
                 let photoUploadPath = global.appRoot + '/public/assets/img/';
                 let photos = [];
-                req.files.photos.forEach((element, i) => {
 
-                    let name = '';
-                    if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
-                        name += params.id+'-'+i+'.jpg';
-                    }
-                    if(element.mimetype == 'image/png'){
-                        name += params.id+'-'+i+'.png';
-                    }
+
+                if(req.files.photos.length > 0){
+                    req.files.photos.forEach((element, i) => {
+                        let name = getName(element, i, params.id);
+                        photos.push(name);
+                        element.mv(photoUploadPath+name, (err)=>{
+                            if(!err) restaurant.update({photos})
+                            else restaurant.pop();
+                        })
+    
+    
+                    });
+                }
+                else{
+                    let element = req.files.photos;
+                    let name = getName(element, 0, params.id);
                     photos.push(name);
                     element.mv(photoUploadPath+name, (err)=>{
                         if(!err) restaurant.update({photos})
                         else restaurant.pop();
                     })
-
-
-                });
+                }
+                
 
             }
         }
@@ -206,7 +235,6 @@ class RestaurantController{
         let restaurant = await restaurantModel.findOne({where: {id: form.restaurant}});
 
         if(history == null ||  history.createdAt.getTime() != history.updatedAt.getTime()){ // El usuario intenta entrar
-            console.log('restaurant.length: '+ (restaurant.freeSeats - parseInt(form.companions)))
             if(restaurant != null && restaurant.freeSeats - parseInt(form.companions) -1 >= 0){ // Hay aforo disponible
                  history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
                  await restaurant.update({ capacity: restaurant.capacity, freeSeats: (restaurant.freeSeats - form.companions - 1)})
