@@ -1,30 +1,45 @@
 const RatingModel = require('../models/Rating').Rating
+const { Op } = require("sequelize");
+
 class RatingController{
 
     static async create(req, res, next){ 
         res.render('rating/create');
     }
 
-    static async store(req, res, next){ //Almacenar nuevo restaurante
-        let form = req.body;
-        let ratingInfo = await RatingModel.findOne({ where:{ userOwner: req.session.currentUser}})
-        let restaurant = await restaurantModel.findOne({where: {id: form.restaurant}});
+    static async store(req, res, next){ 
+        let form = req.params;
+        let rating = req.body.rating;
+        console.log("PARAMETROS");
+        console.log(form.id);
 
-        if( ratingInfo == null) //No hay reseñas previas
-        {
-            await RatingModel.create({ 
-                rating: form.rating, 
-                opinion: form.opinion, 
-                userOwner: req.session.currentUser
+        if(req.session.currentUser == undefined){
+            res.cookie('danger', 'No puedes valorar el restaurante, inicia sesión.')
+            res.redirect('/restaurants/'+req.params.id);
+        }
+        else{
+            let ratingUser = await RatingModel.findOne({ where:{ 
+                [Op.and]: [{userDni: req.session.currentUser.dni}, {restaurantId: form.id}]}
             });
+    
+            if( ratingUser == null) //El usuario no ha valorado ese restaurante
+            {
+                await RatingModel.create({ 
+                    rating: rating,
+                    restaurantId: form.id,
+                    userDni: req.session.currentUser.dni
+                });
+            }
+            else
+            {         
+                await ratingUser.update({rating: rating, where:{
+                    [Op.and]: [{userDni: req.session.currentUser.dni}, {restaurantId: form.id}]    
+                }})
+            }
+            res.cookie('message', 'Has valorado este restaurante!')
+            res.redirect('/restaurants/'+req.params.id);
         }
-        else
-        {           
-            await ratingInfo.update({rating: form.rating , opinion: form.opinion })
-        }
-
-        res.redirect('/my-restaurants');
     }
 }
 
-module.exports = {QRCodeController};
+module.exports = {RatingController};
