@@ -1,1 +1,1 @@
-const { User } = require("../models/User");
+require('./tests')

@@ -1,3 +1,4 @@
+const { User } = require('../models/User')
 
 //Prueba de creación de usuarios
 async function testUserDBCreate(){
