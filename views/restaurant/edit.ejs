@@ -9,16 +9,12 @@
 
     <div class="container mt-5">
         <h2>Editar restaurante</h2>
-        <form action="/restaurants/<%= restaurant.id %>/update " method="post" class="mt-3">
+        <form action="/restaurants/<%= restaurant.id %>/update " method="post" class="mt-3" enctype="multipart/form-data">
             <input type="text" name="name" id="name" placeholder="Nombre del restaurante" class="form-control" value="<%= restaurant.name %>">
             <input type="number" name="capacity" id="capacity" placeholder="Aforo" class="form-control mt-3" value="<%= restaurant.capacity %>">
             <input type="text" name="address" id="address" placeholder="Dirección" class="form-control mt-3" value="<%= restaurant.address %>">
             <input type="text" name="city" id="city" placeholder="Localidad" class="form-control mt-3" value="<%= restaurant.city %>">
-<<<<<<< HEAD
-            <input type="text" name="description" id="description" placeholder="Descripción" class="form-control mt-3">
-=======
             <input type="text" name="description" id="description" placeholder="Descripción" class="form-control mt-3" value="<%= restaurant.description %>">
->>>>>>> 3815abad03ed4b43dd6758138e947ac614906753
             <label for="typeOfFood" class="form-label mt-3">Tipo de comida:</label>
             <select id="typeOfFood" class="form-select" name="foodType">
                 <% foodTypes.forEach(foodType => {%>
@@ -27,12 +23,12 @@
             </select>
             <div class="mt-3">
                 <label for="restaurantMenu" class="form-label">Carta</label>
-                <input class="form-control" type="file" id="restaurantMenu">
+                <input class="form-control" type="file" id="restaurantMenu" name="restaurantMenu">
             </div>
 
             <div class="mt-3">
                 <label for="restaurantLogo" class="form-label">Logo</label>
-                <input class="form-control" type="file" id="restaurantLogo">
+                <input class="form-control" type="file" id="restaurantLogo" name="photos">
             </div>
 
             <div class="d-grid gap-2 mb-3">

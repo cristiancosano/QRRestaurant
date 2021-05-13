@@ -58,7 +58,7 @@ class RestaurantController{
     static async store(req, res, next){ //Almacenar nuevo restaurante
         let form = req.body;
 
-        const anonymous = await restaurantModel.create({ 
+        const restaurant = await restaurantModel.create({ 
             name:form.name, 
             address:form.address, 
             capacity:form.capacity, 
@@ -73,10 +73,10 @@ class RestaurantController{
 
         if(req.files){
             if(req.files.restaurantMenu && req.files.restaurantMenu.mimetype=='application/pdf'){
-                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + anonymous.id+'.pdf';
+                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + restaurant.id+'.pdf';
                 req.files.restaurantMenu.mv(menuUploadPath, (err)=>{
                     if(!err){
-                        anonymous.update({menu: anonymous.id+'.pdf'});
+                        restaurant.update({menu: restaurant.id+'.pdf'});
                     }
                 })
             }
@@ -87,15 +87,15 @@ class RestaurantController{
 
                     let name = '';
                     if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
-                        name += anonymous.id+'-'+i+'.jpg';
+                        name += restaurant.id+'-'+i+'.jpg';
                     }
                     if(element.mimetype == 'image/png'){
-                        name += anonymous.id+'-'+i+'.png';
+                        name += restaurant.id+'-'+i+'.png';
                     }
                     photos.push(name);
                     element.mv(photoUploadPath+name, (err)=>{
-                        if(!err) anonymous.update({photos})
-                        else anonymous.pop();
+                        if(!err) restaurant.update({photos})
+                        else restaurant.pop();
                     })
 
 
@@ -119,25 +119,23 @@ class RestaurantController{
         
         //Actualizar con restaurantModel params.id
 
-        const anonymous = await restaurantModel.update({
+        var restaurant = await restaurantModel.findOne({where: {id: params.id}});
+        restaurant.update({
             name:form.name, 
             address:form.address, 
             capacity:form.capacity, 
-            freeSeats:form.capacity, 
             city:form.city, 
             description:form.description, 
-            menu:'',
-            photos:'',
             userDni:req.session.currentUser.dni,
             foodTypeId:form.foodType
-        },{where: {id: params.id}, include: restaurantModel});
+        });
 
         if(req.files){
             if(req.files.restaurantMenu && req.files.restaurantMenu.mimetype=='application/pdf'){
-                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + anonymous.id+'.pdf';
+                let menuUploadPath = global.appRoot + '/public/assets/restaurantMenu/' + params.id+'.pdf';
                 req.files.restaurantMenu.mv(menuUploadPath, (err)=>{
                     if(!err){
-                        anonymous.update({menu: anonymous.id+'.pdf'});
+                        restaurant.update({menu: restaurant.id+'.pdf'});
                     }
                 })
             }
@@ -148,15 +146,15 @@ class RestaurantController{
 
                     let name = '';
                     if(element.mimetype == 'image/jpeg' || element.mimetype == 'image/jpg'){ 
-                        name += anonymous.id+'-'+i+'.jpg';
+                        name += params.id+'-'+i+'.jpg';
                     }
                     if(element.mimetype == 'image/png'){
-                        name += anonymous.id+'-'+i+'.png';
+                        name += params.id+'-'+i+'.png';
                     }
                     photos.push(name);
                     element.mv(photoUploadPath+name, (err)=>{
-                        if(!err) anonymous.update({photos})
-                        else anonymous.pop();
+                        if(!err) restaurant.update({photos})
+                        else restaurant.pop();
                     })
 
 
