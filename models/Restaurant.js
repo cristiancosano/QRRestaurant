@@ -3,10 +3,15 @@ const { SequelizeManager } = require('./SequelizeManager');
 const sequelize = SequelizeManager.getInstance();
 
 class Restaurant extends Model {
+
+  static listaColasRestaurantes = new Array();
+
+
   async getAverage(){
     let ratings = await this.getRatings();
     var average=0;
     var cont=0;
+    
     ratings.forEach(rating => { 
         average += rating.rating;
         cont++;
