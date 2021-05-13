@@ -26,7 +26,10 @@
         </form>
         <form action="/search/rating" method="post" id="ratingSearch" hidden> 
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Búsqueda por Valoración del Restaurante" name="restaurantRating">
+                <select name="ratingValues" class="form-select">
+                    <option value="higherRating">Mayor a menor valoración</option>
+                    <option value="lowerRating">Menor a mayor valoración</option>
+                </select>
                 <button class="btn btn-primary" type="submit">Buscar</button>
             </div>
             </form>

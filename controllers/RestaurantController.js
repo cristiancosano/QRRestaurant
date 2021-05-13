@@ -4,6 +4,7 @@ const historyModel = require('../models/History').History
 const { Op } = require("sequelize");
 const { Sockets } = require('../sockets/qrScanner/socket')
 
+
 class RestaurantController{
 
     static async index(req, res, next){
@@ -21,6 +22,7 @@ class RestaurantController{
 
         let restaurants = await restaurantModel.findAll();
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        
         res.render('restaurant/index', {restaurants, foodTypes, danger, message});
     }
 
@@ -262,15 +264,72 @@ class RestaurantController{
     }
 
     static async alternatives(req, res, next){
-        let params = req.params;
-        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
-        let restaurants = await restaurantModel.findAll({where: {
-            [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
-        }, include: foodTypeModel})
-        let data = restaurant.toJSON();
-        data.restaurants = restaurants;
-        res.render('restaurant/alternatives', data);
+       
+
+
+
+        let entrarCola = 'no';
+
+        if(entrarCola == 'si')
+        {
+            let colaRestaurante = listaColasRestaurantes[params.id];
+            colaRestaurante.push(req.session.currentUser.dni)
+
+            res.redirect('restaurant/waiting', params.id ); //Mandamos el id del restaurante
+        }
+        else
+        {
+
+            let params = req.params;
+            let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+            let restaurants = await restaurantModel.findAll({where: {
+                [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
+            }, include: foodTypeModel})
+            let data = restaurant.toJSON();
+            data.restaurants = restaurants;
+            res.render('restaurant/alternatives', data);
+
+
+        }
+
+
     }
+
+
+    /*
+    static async waitingQueue(req,res,next)
+    {
+       while(1)
+        { 
+            let colaRestaurante = listaColasRestaurantes[params.id];
+
+            if( ? cancel ) //Si el usuario cancela la espera
+            {
+             colaRestaurante.pop(req.session.currentUser.dni);
+             break;
+            }
+            else
+            {
+
+                if(colaRestaurante.first == colaRestaurante[req.session.currentUser.dni])
+                {
+                    let datosColaRestaurante = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+
+                    if(datosColaRestaurante.freeSeats >= req.companions + 1)
+                    {
+                        res.render('restaurant/YourTurn', data);
+
+                    }
+  
+                }
+            }
+        }
+
+    }
+
+    */
+
+
 
 
 }
