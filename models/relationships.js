@@ -48,7 +48,7 @@ async function migrateSeed(){
     /*
     let j=0;
     for(let i=0; i<100000; i++){
-        j+1;
+        j=j+10;
         User.create({dni: j+1, email: 'pacoalmenara@gmail.com', password: 'password1'})
         User.create({dni: j+2, email: 'pacoalmenara@gmail.com', password: 'password1'})
         User.create({dni: j+3, email: 'pacoalmenara@gmail.com', password: 'password1'})
