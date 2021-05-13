@@ -43,6 +43,14 @@ async function migrateSeed(){
     await User.drop();
     await sequelize.sync()
 
+    //Prueba de creación de usuarios
+
+    /*
+    for(let i=0; i<100000; i++){
+        User.create({dni: i, email: 'pacoalmenara@gmail.com', password: 'password1'})
+    }
+    */
+
     User.create({dni: '12345678A', email: 'pacoalmenara@gmail.com', password: 'password1'})
     User.create({dni: '12345678B', email: 'stickyamp1@gmail.com', password: 'password2'})
     User.create({dni: '12345678C', email: 'cristiancosano@icloud.com', password: 'password3', admin: true})
@@ -55,6 +63,14 @@ async function migrateSeed(){
     FoodType.create({name: 'Bar de tapas'});
     FoodType.create({name: 'Española'});
     FoodType.create({name: 'Vanguardista'});
+
+    //Prueba de creación de usuarios
+
+    /*
+    for(let i=0; i<100000; i++){
+        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+    }
+    */
 
     Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
     Restaurant.create({name: 'Casa Juan', address: 'Arcangel, s/n', capacity: 32, freeSeats:32, city: 'Sevilla', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
