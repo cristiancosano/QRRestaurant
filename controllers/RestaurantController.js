@@ -238,13 +238,15 @@ class RestaurantController{
        
 
 
-        let colaRestaurante = listaColasRestaurantes[params.id];
 
         let entrarCola = 'no';
 
         if(entrarCola == 'si')
         {
+            let colaRestaurante = listaColasRestaurantes[params.id];
             colaRestaurante.push(req.session.currentUser.dni)
+
+            res.redirect('restaurant/waiting', params.id ); //Mandamos el id del restaurante
         }
         else
         {
@@ -258,8 +260,39 @@ class RestaurantController{
             data.restaurants = restaurants;
             res.render('restaurant/alternatives', data);
 
+
         }
 
+
+    }
+
+    static async waitingQueue(req,res,next)
+    {
+       while(1)
+        { 
+            let colaRestaurante = listaColasRestaurantes[params.id];
+
+            if( ? cancel ) //Si el usuario cancela la espera
+            {
+             colaRestaurante.pop(req.session.currentUser.dni);
+             break;
+            }
+            else
+            {
+
+                if(colaRestaurante.first == colaRestaurante[req.session.currentUser.dni])
+                {
+                    let datosColaRestaurante = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+
+                    if(datosColaRestaurante.freeSeats >= req.companions + 1)
+                    {
+                        res.render('restaurant/YourTurn', data);
+
+                    }
+  
+                }
+            }
+        }
 
     }
 
