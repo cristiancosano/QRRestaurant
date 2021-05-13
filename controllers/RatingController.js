@@ -10,8 +10,6 @@ class RatingController{
     static async store(req, res, next){ 
         let form = req.params;
         let rating = req.body.rating;
-        console.log("PARAMETROS");
-        console.log(form.id);
 
         if(req.session.currentUser == undefined){
             res.cookie('danger', 'No puedes valorar el restaurante, inicia sesión.')
