@@ -4,6 +4,7 @@ const historyModel = require('../models/History').History
 const { Op } = require("sequelize");
 const { Sockets } = require('../sockets/qrScanner/socket')
 
+
 class RestaurantController{
 
     static async index(req, res, next){
@@ -234,15 +235,37 @@ class RestaurantController{
     }
 
     static async alternatives(req, res, next){
-        let params = req.params;
-        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
-        let restaurants = await restaurantModel.findAll({where: {
-            [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
-        }, include: foodTypeModel})
-        let data = restaurant.toJSON();
-        data.restaurants = restaurants;
-        res.render('restaurant/alternatives', data);
+       
+
+
+        let colaRestaurante = listaColasRestaurantes[params.id];
+
+        let entrarCola = 'no';
+
+        if(entrarCola == 'si')
+        {
+            colaRestaurante.push(req.session.currentUser.dni)
+        }
+        else
+        {
+
+            let params = req.params;
+            let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+            let restaurants = await restaurantModel.findAll({where: {
+                [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
+            }, include: foodTypeModel})
+            let data = restaurant.toJSON();
+            data.restaurants = restaurants;
+            res.render('restaurant/alternatives', data);
+
+        }
+
+
     }
+
+    
+
+
 
 
 }
