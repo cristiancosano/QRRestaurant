@@ -255,7 +255,7 @@ class RestaurantController{
             let params = req.params;
             let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
             let restaurants = await restaurantModel.findAll({where: {
-                [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
+                [Op.and]: [{city: restaurant.city}, {[Op.not]: [{id: restaurant.id}]} ]
             }, include: foodTypeModel})
             let data = restaurant.toJSON();
             data.restaurants = restaurants;
