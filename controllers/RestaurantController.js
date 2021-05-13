@@ -33,10 +33,25 @@ class RestaurantController{
     }
 
     static async show(req, res, next){
+        
+        var danger = undefined
+        if(req.cookies.danger){
+            var danger = req.cookies.danger;
+            res.clearCookie('danger');
+        }
+
+        var message = undefined
+        if(req.cookies.message){
+            var message = req.cookies.message;
+            res.clearCookie('message');
+        }
+
         let params = req.params;
         let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
         let data = restaurant.toJSON();
         data.average = await restaurant.getAverage();
+        data.message = message;
+        data.danger = danger;
         res.render('restaurant/show', data);
     }
 
@@ -181,9 +196,6 @@ class RestaurantController{
         res.redirect('/my-restaurants');
     }
 
-
-
-    
     static async updateFreeSeats(req, res, next){ //Modificar restaurante
         let form = req.query;
         let history = await historyModel.findOne({
