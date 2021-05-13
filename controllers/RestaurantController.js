@@ -21,6 +21,7 @@ class RestaurantController{
 
         let restaurants = await restaurantModel.findAll();
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
+        
         res.render('restaurant/index', {restaurants, foodTypes, danger, message});
     }
 

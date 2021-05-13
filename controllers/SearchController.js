@@ -1,7 +1,10 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
 const foodTypeModel = require('../models/FoodType').FoodType
-
+const raitingModel = require('../models/Rating').Rating
 const { Op } = require("sequelize");
+
+
+
 class SearchController{
  
     static async findByName(req, res, next){        
@@ -36,17 +39,20 @@ class SearchController{
           });
         res.render('restaurant/index',{restaurants, foodTypes});
     }
-    /*
+    
     static async findByRating(req, res, next){
         let form = req.body
-        let restaurantRating = form.restaurantRating;
-        let restaurants = await restaurantModel.findAll({
-            where: {
-                [Op.gte]: {}
-             
-          });
-        res.render('restaurant/index',{restaurants});
-    }*/
+        console.log(form);
+        if (form.ratingValues == 'higherRating'){
+          let restaurantsHigher = await raitingModel.getRestaurantHigherRating();
+          res.render('restaurant/index',{restaurants: restaurantsHigher});
+        }
+        if(form.ratingValues == 'lowerRating'){
+          let restaurantsLower = await raitingModel.getRestaurantLowerRating();
+          console.log(restaurantsLower);
+          res.render('restaurant/index',{restaurants: restaurantsLower});
+        }
+    }
 }
 
 module.exports = {SearchController};
