@@ -318,20 +318,16 @@ class RestaurantController{
     }
 
 
-    /*
+    
     static async waitingQueue(req,res,next)
     {
        while(1)
         { 
             let colaRestaurante = listaColasRestaurantes[params.id];
 
-            if( ? cancel ) //Si el usuario cancela la espera
-            {
-             colaRestaurante.pop(req.session.currentUser.dni);
-             break;
-            }
-            else
-            {
+           
+            
+            
 
                 if(colaRestaurante.first == colaRestaurante[req.session.currentUser.dni])
                 {
@@ -339,17 +335,28 @@ class RestaurantController{
 
                     if(datosColaRestaurante.freeSeats >= req.companions + 1)
                     {
-                        res.render('restaurant/YourTurn', data);
+                        //Quitar al usuario de la espera
+                        colaRestaurante.pop(req.session.currentUser.dni);
 
+                        res.render('restaurant/YourTurn', data);
+                        break;
                     }
   
                 }
-            }
+            
+        }
+
+
+
+        if( 1 ) //Si el usuario cancela la espera
+        {
+         colaRestaurante.pop(req.session.currentUser.dni);
+         
         }
 
     }
 
-    */
+    
 
 
 
