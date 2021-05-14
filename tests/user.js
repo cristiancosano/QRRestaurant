@@ -1,26 +1,37 @@
 const { User } = require('../models/User')
 
-var totalTests=2;
-//User
 var totalUserTests=2;
 var okUserTests=0;
 var errorUserTests=0;
 
 //Pruebas de consultas simples
 
-// 1) USUARIOS
+//Crear
 async function testUserDBCreate(){
     await User.create({ dni:'11111111test', email:'prueba@gmail.com', password:'password'});
     return;
 };
 
+//Consultar
 async function testUserDBQueryByDNI(){
     let usuario = User.findOne({ where:{ dni:'11111111test'}})
     return usuario;
 };
 
+//Eliminar
 async function deleteTestUser(user){
-    await user.destroy({where: {id:'11111111test'}});
+    await user.destroy({where: {email:'prueba@gmail.com'}});
+    return;
+};
+
+
+//Pruebas de consultas masivas
+
+//Crear 1000 usuarios simultaneos
+async function testUserDBCreate1000(){
+    for(let i=0; i<5; i++){
+        await User.create({dni: i, email: 'prueba@gmail.com', password: 'password'});
+    }
     return;
 };
 
@@ -44,12 +55,24 @@ async function testUser(){
         errorUserTests=2;
     }
 
+    console.log("TEST 3 [CREACIÓN 1000 USUARIOS]");
+    console.log("Creando 1000 usuarios ...");
+    let d1= new Date();
+    console.log(d1);
+    await testUserDBCreate1000();
+    let d2=new Date();
+    console.log(d2);
+    console.log("Tiempo tomado para insertar 1000 usuarios simultanes = ",(d2-d1)/1000)," segundos\n";
+
     console.log("Eliminando usuario de prueba ...");
     await deleteTestUser(user);
     console.log("Usuario de prueba eliminado\n");
+
     return;
 };
 
+
+//Llamadas a los tests
 async function tests(){
     console.log("TESTS");
     console.log("Realizando tests ...\n");
@@ -62,39 +85,3 @@ async function tests(){
 };
 
 tests();
-
-// 2) Consulta de usuario
-
-/*
-async function testUserDBQueryByDNI(){
-    console.log("Consultando usuario ...");
-    let user = await testUserDBQueryByDNI1();
-    
-};
-
-testUserDBQueryByDNI();
-*/
-
-
-//Pruebas de consultas masivas
-
-//Prueba de creación de 1000 usuarios simultaneos
-/*
-async function testUserDBCreate1000(){
-    for(let i=0; i<1000; i++){
-        await User.create({dni: i, email: 'pacoalmenara@gmail.com', password: 'password1'});
-    }
-    return;
-    };
-
-async function testUserDBTime(){
-    let d1= new Date();
-    console.log(d1);
-    await testUserDBCreate1000();
-    let d2=new Date();
-    console.log(d2);
-    console.log("Tiempo tomado para insertar 1000 usuarios simultanes = ",(d2-d1)/1000)," segundos";
-};
-
-testUserDBTime();
-*/
