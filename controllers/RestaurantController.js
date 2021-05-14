@@ -227,6 +227,8 @@ class RestaurantController{
 
     static async updateFreeSeats(req, res, next){ //Modificar restaurante
         let form = req.query;
+        let params = req.body;
+        if(params.id == undefined) params = req.query;
         let history = await historyModel.findOne({
             where: {
                 [Op.and]: [{restaurantId: form.restaurant}, {userDni: form.user}]
@@ -235,26 +237,49 @@ class RestaurantController{
         });
 
         let restaurant = await restaurantModel.findOne({where: {id: form.restaurant}});
+        console.log('params', params)
+        console.log('restaurantsQueue', restaurantModel.restaurantsQueue)
+        let restaurantQueue = restaurantModel.restaurantsQueue.find(restaurant => restaurant.id == params.restaurant);
+
 
         if(history == null ||  history.createdAt.getTime() != history.updatedAt.getTime()){ // El usuario intenta entrar
-            if(restaurant != null && restaurant.freeSeats - parseInt(form.companions) -1 >= 0){ // Hay aforo disponible
+
+            if(restaurant != null && restaurant.freeSeats - parseInt(form.companions) -1 >= 0 && (restaurantQueue === undefined || restaurantQueue.queue.length == 0 || restaurantQueue.queue.length > 0 && parseInt(restaurantQueue.queue[0].companions)+1 <= restaurant.freeSeats) ){ // Hay aforo disponible
+                if(restaurantQueue !== undefined && restaurantQueue.queue.length > 0){//Es una persona que estaba en la cola
+                    restaurantQueue.queue.shift();
+                    restaurantQueue.queue.forEach(user => {
+                        Socket.emit(user.user, 'oneLess', {action: 'oneLess', status: 'lessPersons :)', restaurant: form.restaurant});
+                    })
+                }
                  history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
                  await restaurant.update({ capacity: restaurant.capacity, freeSeats: (restaurant.freeSeats - form.companions - 1)})
                  res.send({status: true, message: "All ok!", action: 'Entry'});
-                 Sockets.emit(form.user, {action: 'entry', status: 'Success', restaurant: form.restaurant})
-                }
+                 Sockets.emit(form.user, 'qr', {action: 'entry', status: 'Success', restaurant: form.restaurant})
+            }
             else{ // No hay aforo disponible
-                Sockets.emit(form.user, {action: 'entry', status: 'capacityExceeded', restaurant: form.restaurant})
+                Sockets.emit(form.user, 'qr', {action: 'entry', status: 'capacityExceeded', restaurant: form.restaurant})
                 res.send({status: false, message: "The restaurant doesn't have free seats. Showing alternatives to user."})
             }
         }
         else if(history != null){ // El usuario intenta salir
             await restaurant.update({freeSeats: restaurant.freeSeats + parseInt(form.companions) + 1});
             const companions = history.companions;
-            await history.update({ companions: 1000 });
+            await history.update({ companions: 1000 }); //Este update es solo temporal para forzar la actualización del updateAt
             await history.update({companions})
             res.send({status: true, message: "All ok!", action: 'Exit'});
-            Sockets.emit(form.user, {action: 'exit', status: 'Success', restaurant: form.restaurant})
+            Sockets.emit(form.user, 'qr', {action: 'exit', status: 'Success', restaurant: form.restaurant})
+            
+            //Notificamos a los usuarios de la cola si los hay
+
+            console.log('Usuario se va. ', restaurantQueue)
+            if(restaurantQueue != undefined) console.log(restaurantQueue.queue[0], restaurant.freeSeats, (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats)
+
+            if(restaurantQueue != undefined && (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats){
+                let user = restaurantQueue.queue[0];
+                Sockets.emit(user.user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
+            }
+
+            
         }
         else{ //Algo no es válido
 
@@ -316,43 +341,6 @@ class RestaurantController{
         res.send({message, restaurant})
         
     }
-
-
-    /*
-    static async waitingQueue(req,res,next)
-    {
-       while(1)
-        { 
-            let colaRestaurante = listaColasRestaurantes[params.id];
-
-            if( ? cancel ) //Si el usuario cancela la espera
-            {
-             colaRestaurante.pop(req.session.currentUser.dni);
-             break;
-            }
-            else
-            {
-
-                if(colaRestaurante.first == colaRestaurante[req.session.currentUser.dni])
-                {
-                    let datosColaRestaurante = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
-
-                    if(datosColaRestaurante.freeSeats >= req.companions + 1)
-                    {
-                        res.render('restaurant/YourTurn', data);
-
-                    }
-  
-                }
-            }
-        }
-
-    }
-
-    */
-
-
-
 
 }
 

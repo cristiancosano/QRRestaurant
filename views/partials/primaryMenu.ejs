@@ -41,14 +41,14 @@
         </ul>
         <form class="d-flex">
           <% if(session.currentUser==undefined){ %>
-            <a href="/login" class="btn btn-primary d-md-none d-lg-inline me-2">Iniciar Sesión</a>
+            <a href="/login" class="btn btn-primary d-lg-inline me-2">Iniciar Sesión</a>
           <% } else{%>
-            <a href="/logout" class="btn btn-danger d-md-none d-lg-inline me-2">Cerrar Sesión</a>
+            <a href="/logout" class="btn btn-danger d-lg-inline me-2">Cerrar Sesión</a>
           <% } %>
             <% if(currentUrl == '/my-restaurants'){ %>
               <a href="/restaurants/create" class="btn btn-success d-md-none d-lg-inline"><i class="bi bi-plus-circle"></i> Añadir Restaurante</a>
               <% } else {%>
-              <a href="/qr-code" class="btn btn-success d-md-none d-lg-inline">Escanear QR</a>
+              <a href="/qr-code" class="btn btn-success d-lg-inline">Escanear QR</a>
             <% } %>
         </form>
       </div>

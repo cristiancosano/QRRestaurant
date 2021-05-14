@@ -9,13 +9,13 @@
 <body>
   <%- include('../partials/primaryMenu') %>
     <div class="mt-5 text-center" style="max-width: 400px; margin: 0 auto;" id="qr">
-      <h3 class="mt-5">Pasa el código QR por el lector: </h3>
+      <h3 class="mt-5" id="title">Pasa el código QR por el lector: </h3>
       <img src="<%= qrData %>" width="100%">
       <input type="hidden" value="<%= session.currentUser.dni %>" id="dni"/>
       <input type="hidden" value="<%= companions %>" id="companions"/>
       <input type="hidden" id="restaurantId"/>
 
-      <div class="d-grid gap-2 mb-3">
+      <div class="d-grid gap-2 mb-3" id='goBack'>
         <a class="btn btn-danger mt-3" href="/qr-code">Volver atrás</a>
       </div>
     </div>
@@ -44,6 +44,8 @@
         let companions = document.getElementById('companions')
         let queueView = document.getElementById('queue')
         let personasPorDelante = document.getElementById('personasPorDelante')
+        let goBack = document.getElementById('goBack')
+        let title = document.getElementById('title');
 
         const socket = io();
         socket.on('success', (data) => console.log(data))
@@ -58,6 +60,17 @@
           }
         })
 
+        socket.on('yourTurn', (data) => {
+          qr.hidden = false;
+          queueView.hidden = true;
+          title.innerText = 'Ya es tu turno. Pasa el QR por el lector de nuevo: '
+          goBack.hidden = true;
+        })
+
+        socket.on('oneLess', (data)=>{
+          personasPorDelante.innerHTML = parseInt(personasPorDelante.innerHTML)-1
+        })
+
         socket.emit('init', {dni: dni.value})
 
         addToQueue.addEventListener('click', (event) => {
@@ -68,7 +81,7 @@
           formData.append('id', restaurantId.value)
           formData.append('dni', dni.value)
           xhr.send(formData);
-          xhr.responseType = 'json'
+          xhr.responseType = 'json';
 
           xhr.addEventListener('readystatechange', ()=>{
             let result = xhr.response;
@@ -77,7 +90,7 @@
               options.hidden = true;
               queueView.hidden = false;
               let index = result.restaurant.queue.findIndex((element) => element.user == dni.value);
-              personasPorDelante.innerHTML = index
+              personasPorDelante.innerHTML = index;
             }
 
           })

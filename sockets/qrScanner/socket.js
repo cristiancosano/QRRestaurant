@@ -32,10 +32,10 @@ class Sockets{
         });
     }
 
-    static emit(dni, data){
+    static emit(dni, event, data){
         let client = clients.getClient(dni);
         console.log(client, 'emiting to:', client.socket)
-        this.io.to(client.socket).emit('qr', data);
+        this.io.to(client.socket).emit(event, data);
     }
 
     
