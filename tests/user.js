@@ -20,7 +20,7 @@ async function testUserDBQueryByDNI(){
 
 //Eliminar
 async function deleteTestUser(user){
-    await user.destroy({where: {email:'prueba@gmail.com'}});
+    await user.destroy({where: {id:'11111111test'}});
     return;
 };
 
@@ -29,12 +29,18 @@ async function deleteTestUser(user){
 
 //Crear 1000 usuarios simultaneos
 async function testUserDBCreate1000(){
-    for(let i=0; i<5; i++){
+    for(let i=0; i<1000; i++){
         await User.create({dni: i, email: 'prueba@gmail.com', password: 'password'});
     }
     return;
 };
 
+//Eliminar 1000 usuarios de prueba
+async function deleteTestMassiveUser(){
+    let user = await User.findAll({where: {email: 'prueba@gmail.com'}});
+    await User.destroy({where: {email: 'prueba@gmail.com'}});
+    return;
+};
 
 async function testUser(){
     console.log("TEST [USUARIO]\n");
@@ -55,6 +61,11 @@ async function testUser(){
         errorUserTests=2;
     }
 
+    console.log("Eliminando usuario de prueba ...");
+    await deleteTestUser(user);
+    console.log("Usuario de prueba eliminado\n");
+
+    //Masiva
     console.log("TEST 3 [CREACIÓN 1000 USUARIOS]");
     console.log("Creando 1000 usuarios ...");
     let d1= new Date();
@@ -63,10 +74,10 @@ async function testUser(){
     let d2=new Date();
     console.log(d2);
     console.log("Tiempo tomado para insertar 1000 usuarios simultanes = ",(d2-d1)/1000)," segundos\n";
-
-    console.log("Eliminando usuario de prueba ...");
-    await deleteTestUser(user);
-    console.log("Usuario de prueba eliminado\n");
+    
+    console.log("Eliminando usuarios masivos de prueba ...");
+    await deleteTestMassiveUser();
+    console.log("Usuarios masivos de prueba eliminados\n");
 
     return;
 };
