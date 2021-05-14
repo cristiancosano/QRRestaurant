@@ -26,7 +26,8 @@ async function deleteTestUser(user){
 
 
 async function testUser(){
-    
+    console.log("TEST [USUARIO]\n");
+
     console.log("TEST 1 [CREAR USUARIO]");
     console.log("Creando usuario ...");
     await testUserDBCreate();
