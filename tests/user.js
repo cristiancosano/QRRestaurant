@@ -1,8 +1,8 @@
 const { User } = require('../models/User')
 
-var totalUserTests=2;
-var okUserTests=0;
-var errorUserTests=0;
+var total=2;
+var ok=0;
+var error=0;
 
 //Pruebas de consultas simples
 
@@ -55,10 +55,10 @@ async function testUser(){
     let user = await testUserDBQueryByDNI();
     if(user.dni == '11111111test'){
         console.log("OK - Usuario encontrado correctamente\n");
-        okUserTests=2;
+        ok=2;
     }else{
         console.log("ERROR - Usuario no encontrado\n");
-        errorUserTests=2;
+        error=2;
     }
 
     console.log("Eliminando usuario de prueba ...");
@@ -90,9 +90,9 @@ async function tests(){
     
     await testUser();
     console.log("Resultados TESTS [USUARIO]");
-    console.log(totalUserTests ," TOTAL - TESTS [USUARIO]")
-    console.log(okUserTests, " OK - TESTS [USUARIO]");
-    console.log(errorUserTests, " ERROR - TESTS [USUARIO]\n");
+    console.log(total ," TOTAL - TESTS [USUARIO]")
+    console.log(ok, " OK - TESTS [USUARIO]");
+    console.log(error, " ERROR - TESTS [USUARIO]\n");
 };
 
 tests();
