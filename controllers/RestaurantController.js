@@ -342,6 +342,50 @@ class RestaurantController{
         
     }
 
+
+    
+    static async waitingQueue(req,res,next)
+    {
+       while(1)
+        { 
+            let colaRestaurante = listaColasRestaurantes[params.id];
+
+           
+            
+            
+
+                if(colaRestaurante.first == colaRestaurante[req.session.currentUser.dni])
+                {
+                    let datosColaRestaurante = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+
+                    if(datosColaRestaurante.freeSeats >= req.companions + 1)
+                    {
+                        //Quitar al usuario de la espera
+                        colaRestaurante.pop(req.session.currentUser.dni);
+
+                        res.render('restaurant/YourTurn', data);
+                        break;
+                    }
+  
+                }
+            
+        }
+
+
+
+        if( 1 ) //Si el usuario cancela la espera
+        {
+         colaRestaurante.pop(req.session.currentUser.dni);
+         
+        }
+
+    }
+
+    
+
+
+
+
 }
 
 module.exports = {RestaurantController};
