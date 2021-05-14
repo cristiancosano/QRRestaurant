@@ -18,12 +18,14 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mt-3" >
-                    <img src="/assets/img/<%= photos[0] %>" class="card-img-top" style="width: 150px; margin: 0 auto;">
+                    <%- include('../partials/carousel', {photos, path: '/assets/img/'}) %> 
+                    <!--<img src="/assets/img/<%= photos[0] %>" class="card-img-top" style="width: 150px; margin: 0 auto;">-->
                     <div class="card-body">
                         <h5 class="card-title"><%= name %>  <span class="badge bg-warning">Comida <%= foodType.name %></span></h5>
                         <p class="card-text"><%= description %></p>
                         <h4 class="h6">Carta del restaurante:</h4>
-                        <embed src="/assets/restaurantMenu/<%= menu %>" type="application/pdf" width="100%" height="400px" />
+                        <div id="adobe-dc-view" style="width: 100%; min-height: 200px;"></div>
+                        <!--<embed src="/assets/restaurantMenu/<%= menu %>" type="application/pdf" width="100%" height="400px" />-->
                     </div>
                     </div>
                 </div>
@@ -58,9 +60,11 @@
                     <div class="card-body">
                         <h5 class="card-title">Google Maps</h5>
                         <p class="card-text">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.7245150508897!2d-4.72374458467837!3d37.91350137973441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6ce070c4d3b65b%3A0x5afb0f5b1a91ea4!2sAulario%20Averroes!5e0!3m2!1ses!2ses!4v1618152671042!5m2!1ses!2ses" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <div style="width: 100%">
+                            <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=<%= encodeURIComponent(address+', '+city+'('+name+')') %>&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                        </div>
                         <div class="d-grid gap-2 mb-3">
-                            <a href="https://goo.gl/maps/7b1brzyBjMJhJMDy5" target="_blank" class="btn btn-success">Calcular ruta</a>
+                            <a href="https://www.google.com/maps/search/<%= encodeURIComponent(address+', '+city+' ('+name+')') %>" target="_blank" class="btn btn-success">Calcular ruta</a>
                         </div>
                         </p>
                     </div>
@@ -68,6 +72,21 @@
                 </div>
         </div>
     </div>
+
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script type="text/javascript">
+    document.addEventListener("adobe_dc_view_sdk.ready", function(){
+        var adobeDCView = new AdobeDC.View({clientId: "bf19625e83894f00b9a073e4488126f6", divId: "adobe-dc-view"});
+        adobeDCView.previewFile({
+        content:{ location: 
+            { url: "/assets/restaurantMenu/<%= menu %>"}},
+        metaData:{fileName: "<%= menu %>"}
+        },
+        {
+        embedMode: "SIZED_CONTAINER"
+        });
+    });
+    </script>
 
     
     <%- include('../partials/footer') %>

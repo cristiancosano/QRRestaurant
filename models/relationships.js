@@ -41,25 +41,7 @@ async function migrateSeed(){
     await Restaurant.drop();
     await FoodType.drop();
     await User.drop();
-    await sequelize.sync()
-
-    //Prueba de creación de usuarios
-
-    /*
-    let j=0;
-    for(let i=0; i<100000; i++){
-        j=j+10;
-        User.create({dni: j+1, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+2, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+3, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+4, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+5, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+6, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+7, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+8, email: 'pacoalmenara@gmail.com', password: 'password1'})
-        User.create({dni: j+9, email: 'pacoalmenara@gmail.com', password: 'password1'})
-    }
-    */
+    await sequelize.sync();
 
     User.create({dni: '12345678A', email: 'pacoalmenara@gmail.com', password: 'password1'})
     User.create({dni: '12345678B', email: 'stickyamp1@gmail.com', password: 'password2'})
@@ -74,24 +56,8 @@ async function migrateSeed(){
     FoodType.create({name: 'Española'});
     FoodType.create({name: 'Vanguardista'});
 
-    //Prueba de creación de usuarios
-
-    /*
-    for(let i=0; i<100000; i++){
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-        Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-    }
-    */
-
-    Restaurant.create({name: 'Casa Pepe', address: 'Rabanales, s/n', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
-    Restaurant.create({name: 'Casa Juan', address: 'Arcangel, s/n', capacity: 32, freeSeats:32, city: 'Sevilla', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
+    Restaurant.create({name: 'Casa Pepe de la Judería', address: 'Calle Romero, 1', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+    Restaurant.create({name: 'Moriles Ribera', address: 'Paseo de la Ribera, 6', capacity: 32, freeSeats:32, city: 'Córdoba', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
     Restaurant.create({name: 'Casa Miguel', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678C', foodTypeId: 5});
     Restaurant.create({name: 'Casa Gil', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 5});
     Restaurant.create({name: 'Casa JM', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 5});
@@ -122,5 +88,5 @@ async function migrateSeed(){
 
 
 (async function(){
-    //await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+    await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
 })();

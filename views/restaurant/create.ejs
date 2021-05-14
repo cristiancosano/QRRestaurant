@@ -40,5 +40,22 @@
     
     <%- include('../partials/footer') %>
     <%- include('../partials/scripts') %>
+
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbrR0xUEIk4S-Q3hW23V8kVLvbPlDh95A&libraries=places&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+        var input = document.getElementById('address');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            document.getElementById('location-snap').
+            innerHTML = place.formatted_address;  
+            document.getElementById('lat-span').
+            innerHTML = place.geometry.location.lat();
+            document.getElementById('lon-span').
+            innerHTML = place.geometry.location.lng();
+        });
+        }
+    </script> -->
 </body>
 </html>
