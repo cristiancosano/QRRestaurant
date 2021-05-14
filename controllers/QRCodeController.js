@@ -8,7 +8,7 @@ class QRCodeController{
     static async show(req,res,next){
         let form = req.body; 
         let qrData = await qrcode.toDataURL(req.headers.host + "/restaurants/update" + "?user=" + req.session.currentUser.dni + "&companions=" + form.nAcomp);
-        res.render('qrcode/show', {qrData});
+        res.render('qrcode/show', {qrData, companions: form.nAcomp});
     }
 }
 

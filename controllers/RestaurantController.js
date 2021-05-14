@@ -248,7 +248,7 @@ class RestaurantController{
                 res.send({status: false, message: "The restaurant doesn't have free seats. Showing alternatives to user."})
             }
         }
-        else if(history != null){ 
+        else if(history != null){ // El usuario intenta salir
             await restaurant.update({freeSeats: restaurant.freeSeats + parseInt(form.companions) + 1});
             const companions = history.companions;
             await history.update({ companions: 1000 });
@@ -293,6 +293,28 @@ class RestaurantController{
         }
 
 
+    }
+
+    static addToQueue(req, res, next){
+        let params = req.params;
+        let form = req.body;
+        let user = req.session.currentUser.dni;
+        let message = '';
+        
+        let restaurant = restaurantModel.restaurantsQueue.find(restaurant => restaurant.id == params.id);
+        if(restaurant === undefined){
+            restaurant = {id: params.id, queue: new Array()}
+            restaurantModel.restaurantsQueue.push(restaurant);
+        }
+
+        if(restaurant.queue.filter( (element) => element.user == user).length == 0){
+            restaurant.queue.push({user, companions: form.companions});
+            message = 'included'
+        } 
+        else message = 'already included'
+        
+        res.send({message, restaurant})
+        
     }
 
 

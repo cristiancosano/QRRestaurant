@@ -4,7 +4,7 @@ const sequelize = SequelizeManager.getInstance();
 
 class Restaurant extends Model {
 
-  static listaColasRestaurantes = new Array();
+  static restaurantsQueue = new Array();
 
 
   async getAverage(){

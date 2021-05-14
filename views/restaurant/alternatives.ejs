@@ -8,10 +8,11 @@
     <%- include('../partials/primaryMenu') %>
 
     <div class="container">
+        <form action="/restaurants/<%= id %>/addToQueue" method="post">
         <% if(restaurants.length > 0){ %>
        <h3 class="mt-4">Alternativas al restaurante '<%=name%>'</h3>
        <h6>Actualmente en el restaurante hay X personas. Puedes esperar o dirigirte a alguno de lo siguientes restaurantes alternativos:</h6>
-       <a href="#" class="btn btn-primary">Prefiero esperar. Añadirme a la cola</a>
+       <button class="btn btn-primary">Prefiero esperar. Añadirme a la cola</button>
 
        <% restaurants.forEach(restaurant => {%>
         <%- include('../partials/restaurantCard', {
@@ -30,9 +31,11 @@
     <% } else{ %>
         <h3 class="mt-4">El restaurante '<%=name%>' se encuentra completo</h3>
         <h6>Actualmente en el restaurante hay X personas. Si lo desea puede esperar en la cola. Le avisaremos cuando pueda entrar.</h6>
-        <a href="#" class="btn btn-primary">Añadirme a la cola</a>
+        <button class="btn btn-primary">Añadirme a la cola</button>
     <%}%>
+    </form>
     </div>
+    
 
     <%- include('../partials/footer') %>
     <%- include('../partials/scripts') %>
