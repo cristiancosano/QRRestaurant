@@ -15,6 +15,10 @@
       <%- include('../partials/alert', {type: 'success', message}) %>
     <% } %>
 
+    <% if(typeof message == 'undefined' && typeof dange == 'undefined'){%>
+      <%- include('../partials/alert', {type: 'info', message: 'Desde <strong>QrRestaurant</strong> queremos ayudar a los restaurantes a controlar el aforo. Visita nuestras secciones de <a href="/faqs">preguntas frecuentes</a> y <a href="/about-us">quiénes somos</a> para más información.'}) %>
+    <% } %>
+
     <%- include('../partials/search') %>
 
     <p>Desde QrRestaurant queremos ayudar a los restaurantes a controlar el aforo. Para acceder a un restaurante deber&aacute;s registrarte en el sistema, iniciar sesi&oacute;n y generar un QR</p>

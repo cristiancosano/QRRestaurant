@@ -3,7 +3,7 @@ module.exports = (req, res, next) =>{
         next()
     }
     else{
-        res.cookie('danger', 'Acceso denegado, para acceder a esta página debe iniciar sesion')
+        res.cookie('danger', 'Acceso denegado, para acceder debes <a href="/login">iniciar sesion</a>. Si aún no estás registrado, <a href="/register">registrate</a> primero.')
         res.redirect('/');
     }
 } 

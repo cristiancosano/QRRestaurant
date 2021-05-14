@@ -88,5 +88,5 @@ async function migrateSeed(){
 
 
 (async function(){
-    await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+    //await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
 })();

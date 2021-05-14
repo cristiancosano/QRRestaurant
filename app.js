@@ -14,6 +14,7 @@ const registerRouter = require('./routes/register');
 const qrCodeRouter = require('./routes/qrCode');
 const searchRouter = require ('./routes/search');
 const aboutUsRouter = require('./routes/aboutUs');
+const faqRouter = require('./routes/faq');
 const foodTypeRouter = require('./routes/foodType');
 const globalVariables = require('./middlewares/globalVariables');
 const fileUpload = require('express-fileupload');
@@ -54,6 +55,8 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
 app.use('/search', searchRouter);
+app.use('/faqs', faqRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

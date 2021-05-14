@@ -1,3 +1,19 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./partials/header') %>
+    <title>QrRestaurant</title>
+</head>
+<body>
+    <%- include('./partials/primaryMenu') %>
+    <div class="container">
+        <div class="mt-3 w-100" >
+            <h3>Error <%= error.status %>: <%= message %></h3>
+            <p>Si esto no debería haber pasado o el error persiste, contactanos en <a href="mailto:contacto@qrrestaurant.com">nuestro email</a>. Estamos trabajando para evitar que esto suceda de nuevo.</p>  
+        </div>
+        <img src="/images/error.png" class="" style="max-width: 500px; width: 100%; display: block; margin: auto;">
+        
+    </div>
+    <%- include('./partials/footer') %>
+    <%- include('./partials/scripts') %>
+</body>
