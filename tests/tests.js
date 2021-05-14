@@ -26,31 +26,38 @@ async function deleteTestUser(user){
 
 
 async function testUser(){
+    
+    console.log("TEST 1 [CREAR USUARIO]");
     console.log("Creando usuario ...");
     await testUserDBCreate();
-    console.log("OK - Usuario creado correctamente");
+    console.log("OK - Usuario creado correctamente\n");
+    
+    console.log("TEST 2 [CONSULTAR USUARIO]");
     console.log("Consultando usuario ...");
     let user = await testUserDBQueryByDNI();
     if(user.dni == '11111111test'){
-        console.log("OK - Usuario encontrado correctamente");
+        console.log("OK - Usuario encontrado correctamente\n");
         okUserTests=2;
     }else{
-        console.log("ERROR - Usuario no encontrado");
+        console.log("ERROR - Usuario no encontrado\n");
         errorUserTests=2;
     }
+
     console.log("Eliminando usuario de prueba ...");
     await deleteTestUser(user);
-    console.log("Usuario de prueba eliminado");
+    console.log("Usuario de prueba eliminado\n");
     return;
 };
 
 async function tests(){
     console.log("TESTS");
-    console.log("Realizando tests ...");
+    console.log("Realizando tests ...\n");
+    
     await testUser();
-    console.log(totalUserTests ," TOTAL -> TESTS [USUARIO]")
-    console.log(okUserTests, " OK -> TESTS [USUARIO]");
-    console.log(errorUserTests, " ERROR -> TESTS [USUARIO]");
+    console.log("Resultados TESTS [USUARIO]");
+    console.log(totalUserTests ," TOTAL - TESTS [USUARIO]")
+    console.log(okUserTests, " OK - TESTS [USUARIO]");
+    console.log(errorUserTests, " ERROR - TESTS [USUARIO]\n");
 };
 
 tests();
