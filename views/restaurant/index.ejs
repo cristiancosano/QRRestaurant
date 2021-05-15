@@ -20,6 +20,14 @@
     <% } %>
 
     <%- include('../partials/search') %>
+
+    <% if(typeof h3 !== 'undefined'){  %> 
+      <h3><%= h3 %></h3>
+    <% } %>
+
+    <% if(typeof searchParam !== 'undefined'){ %>
+      <h3 class="mt-3">Resultados por <%= filter %>: <%= searchParam%></h3>
+    <% } %>
     
     <% restaurants.forEach(restaurant => {%>
         <%- include('../partials/restaurantCard', {

@@ -19,14 +19,14 @@
               <% } %>
 
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle <%= (/^\/foodType\//.test(currentPath)) ? 'active' : '' %>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Tipos de comida
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <% primaryMenuFoodTypes.forEach( foodType => { 
                     if(foodType.restaurants.length > 0){
                   %>
-                  <li><a class="dropdown-item" href="/foodType/<%= foodType.id %>"><%= foodType.name %></a></li>
+                  <li><a class="dropdown-item <%= (RegExp('^\/foodType\/'+foodType.id).test(currentPath)) ? 'active' : '' %>" href="/foodType/<%= foodType.id %>"><%= foodType.name %></a></li>
                   <%}}) %> 
                 </ul>
               </li>

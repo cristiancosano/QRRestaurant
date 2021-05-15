@@ -6,7 +6,7 @@ const sequelize = SequelizeManager.getInstance();
 
 class Rating extends Model {
   static async getRestaurantHigherRating(){
-    return await sequelize.query("SELECT foodType.name as 'foodType.name', foodType.id as 'foodType.id', restaurant.*, rating.restaurantId, AVG(rating.rating) AS MEDIA FROM `restaurant` join rating on restaurant.id = rating.restaurantId join foodType on restaurant.foodTypeId=foodType.id GROUP BY rating.restaurantId ORDER BY MEDIA DESC", { nest:true, type: QueryTypes.SELECT });
+    return await sequelize.query("SELECT foodType.name as 'foodType.name', foodType.id as 'foodType.id', restaurant.*, rating.restaurantId, AVG(rating.rating) AS MEDIA FROM `restaurant` join rating on restaurant.id = rating.restaurantId join foodType on restaurant.foodTypeId=foodType.id GROUP BY rating.restaurantId ORDER BY MEDIA DESC", { nest: true, type: QueryTypes.SELECT });
   }
 
   static async getRestaurantLowerRating(){

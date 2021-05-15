@@ -7,5 +7,6 @@ module.exports = async (req, res, next) => {
     res.locals.primaryMenuFoodTypes = await foodTypeModel.findAll({include: restaurantModel});
     res.locals.currentPath = req.originalUrl;
     res.locals.host = req.host;
+    console.log('curr',res.locals.currentPath)
     next();
 }

@@ -31,8 +31,9 @@ class RestaurantController{
         let params = req.params;
 
         let restaurants = await restaurantModel.findAll({where: {foodTypeId: params.id}});
+        let foodType = await foodTypeModel.findOne({where: {id: params.id}})
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
-        res.render('restaurant/index', {restaurants, foodTypes});
+        res.render('restaurant/index', {restaurants, foodTypes, h3: 'Restaurantes de Comida '+foodType.name});
     }
 
     static async show(req, res, next){
@@ -384,11 +385,6 @@ class RestaurantController{
         }
 
     }
-
-    
-
-
-
 
 }
 
