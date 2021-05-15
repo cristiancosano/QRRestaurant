@@ -1,2 +1,2 @@
-//require('./user')
-require('./restaurant')
+require('./user')
+//require('./restaurant')
