@@ -33,7 +33,7 @@ Restaurant.init({
   capacity: DataTypes.INTEGER,
   freeSeats: DataTypes.INTEGER,
   city: DataTypes.STRING,
-  description: DataTypes.STRING,
+  description: DataTypes.TEXT,
   menu: DataTypes.STRING,
   photos: DataTypes.JSON
 

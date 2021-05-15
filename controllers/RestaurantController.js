@@ -251,9 +251,16 @@ class RestaurantController{
 
             if(restaurant != null && restaurant.freeSeats - parseInt(form.companions) -1 >= 0 && (restaurantQueue === undefined || restaurantQueue.queue.length == 0 || restaurantQueue.queue.length > 0 && parseInt(restaurantQueue.queue[0].companions)+1 <= restaurant.freeSeats) ){ // Hay aforo disponible
                 if(restaurantQueue !== undefined && restaurantQueue.queue.length > 0){//Es una persona que estaba en la cola
-                    restaurantQueue.queue.shift();
+                    let currentRestaurant = restaurantQueue.queue.shift();
                     restaurantQueue.queue.forEach(user => {
-                        Sockets.emit(user.user, 'oneLess', {action: 'oneLess', status: 'lessPersons :)', restaurant: form.restaurant});
+                        let people = parseInt(user.companions)+1;
+                        console.log('asientos libres', restaurant.freeSeats, 'asientos que ocupa el inquilino', parseInt(currentRestaurant.companions), 'diferencia', restaurant.freeSeats-parseInt(currentRestaurant.companions), 'proximo en cola', people, 'cabe el proximo?', restaurant.freeSeats-parseInt(currentRestaurant.companions) >= people, 'usuario', user.user)
+                        if(restaurant.freeSeats-parseInt(currentRestaurant.companions) >= people){ //El siguiente de la cola también puede entrar
+                            Sockets.emit(user.user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
+                        }
+                        else{ //No cabe nadie más, les decimos que la cola se ha reducido en uno a todos los demás
+                            Sockets.emit(user.user, 'oneLess', {action: 'oneLess', status: 'lessPersons :)', restaurant: form.restaurant});
+                        }
                     })
                 }
                  history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
@@ -278,6 +285,14 @@ class RestaurantController{
 
            
             if(restaurantQueue != undefined &&  restaurantQueue.queue.length>0 && (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats){
+                // let counter = 0;
+                // for(let i = 0; (i < restaurantQueue.queue.length) && counter < freeSeats; i++){ // Avisamos para entrar a todos los usuarios que caben  
+                //     let queue = restaurantQueue.queue[i];
+                //     let user = queue.user.user;
+                //     counter += parseInt(queue.companions)+1;
+                //     if(counter <= freeSeats)
+                //         Sockets.emit(user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
+                // }
                 let user = restaurantQueue.queue[0];
                 Sockets.emit(user.user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
             }
@@ -336,6 +351,7 @@ class RestaurantController{
         }
 
         if(restaurant.queue.filter( (element) => element.user == user).length == 0){
+            if(form.companions == undefined || form.companions == "") form.companions = '0';
             restaurant.queue.push({user, companions: form.companions});
             message = 'included'
         } 
