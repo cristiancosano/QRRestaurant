@@ -12,7 +12,7 @@ class RatingController{
         let rating = req.body.rating;
 
         if(req.session.currentUser == undefined){
-            res.cookie('danger', 'No puedes valorar el restaurante, inicia sesión.')
+            res.cookie('danger', 'Para valorar el restaurante debes <a href="/login">iniciar sesión</a> primero. Si aun no estás registrado, <a href="/register">registrate</a>.')
             res.redirect('/restaurants/'+req.params.id);
         }
         else{
@@ -34,7 +34,7 @@ class RatingController{
                     [Op.and]: [{userDni: req.session.currentUser.dni}, {restaurantId: form.id}]    
                 }})
             }
-            res.cookie('message', 'Has valorado este restaurante!')
+            res.cookie('message', '¡Valoración añadida correctamente! Gracias por ser parte de la gran comunidad que estamos formando 😊.')
             res.redirect('/restaurants/'+req.params.id);
         }
     }

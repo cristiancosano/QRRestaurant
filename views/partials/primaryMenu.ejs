@@ -10,11 +10,11 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px;">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                <a class="nav-link <%= (currentPath == '/') ? 'active' : '' %>" aria-current="page" href="/">Inicio</a>
               </li>
               <% if(session.currentUser!=undefined && session.currentUser.admin){ %>
                 <li class="nav-item">
-                  <a class="nav-link" href="/my-restaurants">Mis restaurantes</a>
+                  <a class="nav-link <%= (currentPath == '/my-restaurants') ? 'active' : '' %>" href="/my-restaurants">Mis restaurantes</a>
                 </li>
               <% } %>
 
@@ -31,24 +31,24 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/faqs">Preguntas frecuentes</a>
+                <a class="nav-link <%= (currentPath == '/faqs') ? 'active' : '' %>" href="/faqs">Preguntas frecuentes</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="/about-us">Quienes somos</a>
+                <a class="nav-link <%= (currentPath == '/about-us') ? 'active' : '' %>" href="/about-us">Quienes somos</a>
               </li>
 
         </ul>
         <form class="d-flex">
           <% if(session.currentUser==undefined){ %>
-            <a href="/login" class="btn btn-primary d-lg-inline me-2">Iniciar Sesión</a>
+            <a href="/login" class="btn btn-primary d-lg-inline me-2"><i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión</a>
           <% } else{%>
-            <a href="/logout" class="btn btn-danger d-lg-inline me-2">Cerrar Sesión</a>
+            <a href="/logout" class="btn btn-danger d-lg-inline me-2"><i class="bi bi-box-arrow-left me-2"></i>Cerrar Sesión</a>
           <% } %>
             <% if(currentUrl == '/my-restaurants'){ %>
-              <a href="/restaurants/create" class="btn btn-success d-md-none d-lg-inline"><i class="bi bi-plus-circle"></i> Añadir Restaurante</a>
+              <a href="/restaurants/create" class="btn btn-success d-md-none d-lg-inline"><i class="bi bi-plus-circle"></i>Añadir Restaurante</a>
               <% } else {%>
-              <a href="/qr-code" class="btn btn-success d-lg-inline">Escanear QR</a>
+              <a href="/qr-code" class="btn btn-success d-lg-inline"><i class="bi bi-upc-scan me-2"></i>Escanear QR</a>
             <% } %>
         </form>
       </div>

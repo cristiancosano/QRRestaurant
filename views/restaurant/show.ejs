@@ -40,17 +40,22 @@
                     <div class="card-header">Valoraciones</div>
                     <div class="card-body">
 
-                        <h5 class="card-title text-center">
+                        <p class="text-center">
+                            Valoración media: 
                             <% for(var i=0; i<5; i++){ %>     
-                                <i class="bi bi-<%= (average-i>=1) ? 'star-fill' : (average-i<=0) ? 'star' : 'star-half' %>"></i>
+                                <i class="bi bi-<%= (average-i>=1) ? 'star-fill' : (average-i<=0) ? 'star' : 'star-half' %> text-warning"></i>
                             <% } %>
                      
-                        </h5>
+                        </p>
                         <form action="/restaurants/<%= id %>/rate" method="post">
-                            <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1" name="rating"> estrellas</p>
+                            <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1" value="<%= (currentUserRating !== undefined) ? currentUserRating.rating : '1'  %>" name="rating" > estrellas</p>
                             <div class="d-grid gap-2 mb-3">
                                 <button class="btn btn-primary" type="submit">Valorar</button>
                             </div>
+                            <% if(currentUserRating !== undefined){ %>
+                                <p class="text-center small text-danger">Nota: Ya has valoraste este sitio con <%= currentUserRating.rating  %> extrellas. Si añades otra valoración, la anterior se eliminará.</p>
+                                <% } %>
+                                
                         </form>
 
                     </div>
@@ -76,7 +81,12 @@
     <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
     <script type="text/javascript">
     document.addEventListener("adobe_dc_view_sdk.ready", function(){
-        var adobeDCView = new AdobeDC.View({clientId: "bf19625e83894f00b9a073e4488126f6", divId: "adobe-dc-view"});
+        let local = '09634867302b42fc9213576a3d842671';
+        let heroku = 'bf19625e83894f00b9a073e4488126f6';
+        let apiKey = '';
+        if(location.hostname == 'localhost') apiKey = local;
+        else if(location.hostname == 'qrrestaurant.herokuapp.com') apiKey = heroku;
+        var adobeDCView = new AdobeDC.View({clientId: apiKey, divId: "adobe-dc-view"});
         adobeDCView.previewFile({
         content:{ location: 
             { url: "/assets/restaurantMenu/<%= menu %>"}},
