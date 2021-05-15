@@ -155,7 +155,7 @@ async function tests(){
     
     await testRestaurant();
     console.log("Resultados TESTS [RESTAURANTE]");
-    console.log(total ," TOTAL - TESTS [RESTAURANTE]")
+    console.log(total ," TOTAL - TESTS [RESTAURANTE]");
     console.log(ok, " OK - TESTS [RESTAURANTE]");
     console.log(error, " ERROR - TESTS [RESTAURANTE]\n");
 
