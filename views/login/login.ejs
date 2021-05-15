@@ -18,15 +18,17 @@
                             <%- include('../partials/alert', {type: 'info', message}) %>
                         <% } %>
 
-                        <form id="login-form" class="form" action="/login" method="post">
+                        <form id="login-form" class="form needs-validation" action="/login" method="post" novalidate>
                             <h3 class="text-center">Iniciar Sesión</h3>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email:</label><br>
-                                <input type="email" name="email" id="email" class="form-control">
+                                <input type="email" name="email" id="email" class="form-control" required>
+                                <div class="invalid-feedback">Introduce una dirección de correo electrónico válida.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control" required>
+                                <div class="invalid-feedback">Para iniciar sesión debes introducir tu contraseña.</div>
                             </div>
                             <div class="form-check form-switch mb-3">
                                 <input class="form-check-input" type="checkbox" id="remember-me" checked>
@@ -45,7 +47,28 @@
             </div>
         </div>
     </div>
-
     <%- include('../partials/scripts') %>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+    </script>
 </body>
 </html>
