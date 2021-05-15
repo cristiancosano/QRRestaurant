@@ -90,7 +90,7 @@ async function tests(){
     
     await testUser();
     console.log("Resultados TESTS [USUARIO]");
-    console.log(total ," TOTAL - TESTS [USUARIO]")
+    console.log(total ," TOTAL - TESTS [USUARIO]");
     console.log(ok, " OK - TESTS [USUARIO]");
     console.log(error, " ERROR - TESTS [USUARIO]\n");
 };
