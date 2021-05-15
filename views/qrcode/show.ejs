@@ -20,6 +20,23 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="controlModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="controlModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal-->
+
     <div hidden id="options" class="container">
       <p>Actualmente el restaurante al que intentas acceder está lleno, puedes esperar a que haya aforo suficiente para entrar añadiendote a la cola o ir a un restaurante alternativo.</p>
       <a href="#" class="btn btn-secondary" id="otherRestaurants">Mostrar alternativas</a>
@@ -35,6 +52,14 @@
     <%- include('../partials/scripts') %>
     <script src="https://cdn.socket.io/4.0.2/socket.io.min.js" integrity="sha384-Bkt72xz1toXkj/oEiOgkQwWKbvNYxTNWMqdon3ejP6gwq53zSo48nW5xACmeDV0F" crossorigin="anonymous"></script>
     <script>
+      //let modal = document.getElementById('entryModal');
+      //modal.modal('show');
+      
+      
+
+    </script>
+    
+    <script>
         let dni = document.getElementById('dni');
         let otherRestaurants = document.getElementById('otherRestaurants');
         let options = document.getElementById('options');
@@ -46,6 +71,9 @@
         let personasPorDelante = document.getElementById('personasPorDelante')
         let goBack = document.getElementById('goBack')
         let title = document.getElementById('title');
+        let myModal = new bootstrap.Modal(document.getElementById('controlModal'), options)
+        let modalTitle = document.getElementById('modal-title');
+        let modalBody = document.getElementById('modal-body');
 
         const socket = io();
         socket.on('success', (data) => console.log(data))
@@ -57,6 +85,16 @@
             options.hidden = false;
             qr.hidden = true;
             restaurantId.value = data.restaurant;
+          }
+          else if(data.action == 'entry' && data.status == 'Success'){
+            modalTitle.innerHTML = 'Ya puedes entrar';
+            modalBody.innerHTML = 'Hemos verificado que el restaurante es seguro y cumple con las condiciones de aforo. Ya puedes entrar. La barrera se ha abierto.';
+            myModal.toggle();
+          }
+          else if(data.action == 'exit' && data.status == 'Success'){
+            modalTitle.innerHTML = 'Ya puedes salir';
+            modalBody.innerHTML = 'Gracias por tu visita, esperamos que vuelvas pronto. Recuerda dejar una <a href="/restaurants/'+data.restaurant+'">valoración del restaurante</a> para ayudar al resto de la comunidad.';
+            myModal.toggle();
           }
         })
 
