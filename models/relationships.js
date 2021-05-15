@@ -57,7 +57,7 @@ async function migrateSeed(){
     FoodType.create({name: 'Española'});
     FoodType.create({name: 'Vanguardista'});
 
-    Restaurant.create({name: 'Casa Pepe de la Judería', address: 'Calle Romero, 1', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
+    Restaurant.create({name: 'Casa Pepe de la Judería', address: 'Calle Romero, 1', capacity: 22, freeSeats:22, city: 'Córdoba', description: 'Bienvenidos a Casa Pepe de la Judería, el restaurante ideal para sumergirse en la riqueza culinaria cordobesa', menu: 'Pepe_Juderia_carta.pdf', photos: ['Pepe_juderia_logo.jpg'], userDni: '12345678A', foodTypeId: 4});
     Restaurant.create({name: 'Moriles Ribera', address: 'Paseo de la Ribera, 6', capacity: 32, freeSeats:32, city: 'Córdoba', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
     Restaurant.create({name: 'Casa Miguel', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678C', foodTypeId: 5});
     Restaurant.create({name: 'Casa Gil', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 4});
