@@ -1,1 +1,1 @@
-# Modelado de Navegación
+# Modelo de Navegación
