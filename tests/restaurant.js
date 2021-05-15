@@ -56,6 +56,34 @@ async function testRestaurantDBDelete(){
     return;
 };
 
+//Pruebas de consultas masivas
+
+//Crear 50 restaurantes simultaneos
+async function testRestaurantDBCreate50(){
+    for(let i=0; i<50; i++){
+        await Restaurant.create({ 
+            name:'Nombre', 
+            address:'Dirección', 
+            capacity:'5', 
+            freeSeats:'5', 
+            city:'Ciudad', 
+            description:'Descripción', 
+            menu:'averroes.pdf',
+            photos:['averroes.jpg'],
+            userDni:'11111111test',
+            foodTypeId:'1'
+        });
+    }
+    return;
+};
+
+//Eliminar 50 restaurantes de prueba
+async function deleteTestMassiveRestaurant(){
+    await Restaurant.findAll({where: {name: 'Nombre'}});
+    await Restaurant.destroy({where: {name: 'Nombre'}});
+    return;
+};
+
 async function testRestaurant(){
     console.log("TEST [RESTAURANTE]\n");
 
@@ -103,6 +131,20 @@ async function testRestaurant(){
     ok++;
     console.log("OK - Restaurante eliminado correctamente\n");
 
+    //Masiva
+    console.log("TEST 6 [CREACIÓN 50 RESTAURANTES]");
+    console.log("Creando 50 restaurantes ...");
+    let d1= new Date();
+    console.log(d1);
+    await testRestaurantDBCreate50();
+    let d2=new Date();
+    console.log(d2);
+    console.log("Tiempo tomado para insertar 50 restaurantes simultanes = ",(d2-d1)/1000)," segundos\n";
+
+    console.log("Eliminando restaurantes masivos de prueba ...");
+    await deleteTestMassiveRestaurant();
+    console.log("Usuarios restaurantes de prueba eliminados\n");
+
     return;
 };
 
@@ -117,7 +159,7 @@ async function tests(){
     console.log(ok, " OK - TESTS [RESTAURANTE]");
     console.log(error, " ERROR - TESTS [RESTAURANTE]\n");
 
-    console.log("ALERTA - Consultar el código para probar la función de actualizar\n");
+    console.log("ALERTA - Consultar el código para probar el test de actualizar [TEST 4]\n");
 };
 
 tests();
