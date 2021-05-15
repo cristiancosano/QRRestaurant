@@ -59,8 +59,8 @@ async function migrateSeed(){
     Restaurant.create({name: 'Casa Pepe de la Judería', address: 'Calle Romero, 1', capacity: 22, freeSeats:22, city: 'Cordoba', description: 'Un lugar muy bonito', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678A', foodTypeId: 1});
     Restaurant.create({name: 'Moriles Ribera', address: 'Paseo de la Ribera, 6', capacity: 32, freeSeats:32, city: 'Córdoba', description: 'Un lugar muy feo', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678B', foodTypeId: 2});
     Restaurant.create({name: 'Casa Miguel', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678C', foodTypeId: 5});
-    Restaurant.create({name: 'Casa Gil', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 5});
-    Restaurant.create({name: 'Casa JM', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 5});
+    Restaurant.create({name: 'Casa Gil', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 4});
+    Restaurant.create({name: 'Casa JM', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 3});
     Restaurant.create({name: 'Casa Paco', address: 'El Tablero, s/n', capacity: 42, freeSeats:42, city: 'Granada', description: 'Un lugar muy rancio', menu: 'averroes.pdf', photos: ['averroes.jpg'], userDni: '12345678D', foodTypeId: 5});
 
     Rating.create({rating: 1, restaurantId: 1, userDni: '12345678A'})

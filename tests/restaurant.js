@@ -128,9 +128,14 @@ async function testRestaurant(){
     console.log("TEST 5 [ELIMINAR RESTAURANTE]");
     console.log("Eliminando restaurante ...");
     await testRestaurantDBDelete();
-    ok++;
-    console.log("OK - Restaurante eliminado correctamente\n");
-
+    if(restaurantName.name == null){
+        console.log("ERROR - Restaurante no eliminado\n");
+        error++;
+    }else{
+        console.log("OK - Restaurante eliminado correctamente\n");
+        ok++;
+    }
+    
     //Masiva
     console.log("TEST 6 [CREACIÓN 50 RESTAURANTES]");
     console.log("Creando 50 restaurantes ...");
