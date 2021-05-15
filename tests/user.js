@@ -37,7 +37,7 @@ async function testUserDBCreate1000(){
 
 //Eliminar 1000 usuarios de prueba
 async function deleteTestMassiveUser(){
-    let user = await User.findAll({where: {email: 'prueba@gmail.com'}});
+    await User.findAll({where: {email: 'prueba@gmail.com'}});
     await User.destroy({where: {email: 'prueba@gmail.com'}});
     return;
 };
