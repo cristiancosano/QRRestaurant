@@ -253,7 +253,7 @@ class RestaurantController{
                 if(restaurantQueue !== undefined && restaurantQueue.queue.length > 0){//Es una persona que estaba en la cola
                     restaurantQueue.queue.shift();
                     restaurantQueue.queue.forEach(user => {
-                        Socket.emit(user.user, 'oneLess', {action: 'oneLess', status: 'lessPersons :)', restaurant: form.restaurant});
+                        Sockets.emit(user.user, 'oneLess', {action: 'oneLess', status: 'lessPersons :)', restaurant: form.restaurant});
                     })
                 }
                  history = await historyModel.create({ companions: form.companions, restaurantId: form.restaurant, userDni: form.user})
@@ -276,10 +276,8 @@ class RestaurantController{
             
             //Notificamos a los usuarios de la cola si los hay
 
-            console.log('Usuario se va. ', restaurantQueue)
-            if(restaurantQueue != undefined) console.log(restaurantQueue.queue[0], restaurant.freeSeats, (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats)
-
-            if(restaurantQueue != undefined && (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats){
+           
+            if(restaurantQueue != undefined &&  restaurantQueue.queue.length>0 && (parseInt(restaurantQueue.queue[0].companions) + 1) <= restaurant.freeSeats){
                 let user = restaurantQueue.queue[0];
                 Sockets.emit(user.user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
             }
