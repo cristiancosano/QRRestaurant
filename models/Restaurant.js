@@ -1,4 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Op } = require('sequelize');
+const ratingModel = require('./Rating').Rating;
 const { SequelizeManager } = require('./SequelizeManager');
 const sequelize = SequelizeManager.getInstance();
 
@@ -20,6 +21,10 @@ class Restaurant extends Model {
     average /= cont;
 
     return average;
+  }
+
+  async getRatingByUser(dni){
+    return ratingModel.getRatingFromUserByRestaurant(dni, this.id);
   }
 }
 Restaurant.init({

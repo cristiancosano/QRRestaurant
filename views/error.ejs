@@ -10,7 +10,7 @@
         <div class="mt-3 w-100" >
             <h3>Error <%= error.status %>: <%= message %></h3>
             <p>Si esto no debería haber pasado o el error persiste, contactanos en <a href="mailto:contacto@qrrestaurant.com">nuestro email</a>. Estamos trabajando para evitar que esto suceda de nuevo.</p>  
-            <p><%= error.stack %></p>
+            <pre><%= error.stack %></pre>
         </div>
         <img src="/images/error.png" class="" style="max-width: 500px; width: 100%; display: block; margin: auto;">
         

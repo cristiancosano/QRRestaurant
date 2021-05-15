@@ -1,6 +1,7 @@
 const restaurantModel = require('../models/Restaurant').Restaurant
 const foodTypeModel = require('../models/FoodType').FoodType
 const historyModel = require('../models/History').History
+const ratingModel = require('../models/Rating').Rating
 const { Op } = require("sequelize");
 const { Sockets } = require('../sockets/qrScanner/socket')
 
@@ -49,11 +50,16 @@ class RestaurantController{
         }
 
         let params = req.params;
-        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: foodTypeModel});
+        let restaurant = await restaurantModel.findOne({where: {id: params.id}, include: [foodTypeModel, ratingModel]});
         let data = restaurant.toJSON();
         data.average = await restaurant.getAverage();
         data.message = message;
         data.danger = danger;
+        data.currentUserRating = undefined;
+        
+
+        if(req.session.currentUser !== undefined) 
+            data.currentUserRating = await restaurant.getRatingByUser(req.session.currentUser.dni)
 
         res.render('restaurant/show', data);
     }
@@ -237,8 +243,6 @@ class RestaurantController{
         });
 
         let restaurant = await restaurantModel.findOne({where: {id: form.restaurant}});
-        console.log('params', params)
-        console.log('restaurantsQueue', restaurantModel.restaurantsQueue)
         let restaurantQueue = restaurantModel.restaurantsQueue.find(restaurant => restaurant.id == params.restaurant);
 
 

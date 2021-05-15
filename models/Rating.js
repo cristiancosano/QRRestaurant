@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Op } = require('sequelize');
 const { QueryTypes } = require('sequelize');
 const { SequelizeManager } = require('./SequelizeManager')
 
@@ -11,6 +11,10 @@ class Rating extends Model {
 
   static async getRestaurantLowerRating(){
     return await sequelize.query("SELECT foodType.name as 'foodType.name', foodType.id as 'foodType.id', restaurant.*, rating.restaurantId, AVG(rating.rating) AS MEDIA FROM `restaurant` join rating on restaurant.id = rating.restaurantId join foodType on restaurant.foodTypeId=foodType.id GROUP BY rating.restaurantId ORDER BY MEDIA ASC", { nest: true, type: QueryTypes.SELECT });
+  }
+
+  static async getRatingFromUserByRestaurant(userDni, restaurantId){
+    return this.findOne({where: {[Op.and]: {userDni, restaurantId}}})
   }
 }
 
