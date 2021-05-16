@@ -52,7 +52,7 @@
                             <div class="d-grid gap-2 mb-3">
                                 <button class="btn btn-primary" type="submit">Valorar</button>
                             </div>
-                            <% if(typeof currentUserRating !== 'undefined'){ %>
+                            <% if(typeof currentUserRating !== 'undefined' && currentUserRating != null){ %>
                                 <p class="text-center small text-danger">Nota: Ya has valorado este sitio con <%= currentUserRating.rating  %> extrellas. Si añades otra valoración, la anterior se eliminará.</p>
                             <% } %>
                                 
