@@ -5,12 +5,17 @@ class SessionController{
 
     // Muestra el formulario de inicio de sesion
     static login(req, res, next){
-        var message = undefined
+        var message = undefined;
+        var danger = undefined;
         if(req.cookies.message){
-            var message = req.cookies.message;
+            message = req.cookies.message;
             res.clearCookie('message');
         }
-        res.render('login/login', {message});
+        if(req.cookies.danger){
+            danger = req.cookies.danger;
+            res.clearCookie('danger');
+        }
+        res.render('login/login', {message, danger});
     }
 
     // Comprueba los datos y almacena la sesión si son validos

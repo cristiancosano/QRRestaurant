@@ -16,7 +16,7 @@ class UserController{
         if(usuario == null)
         {
         const anonymous = await User.create({ dni:form.dni, email:form.email, password:form.password});
-        res.render('user/create', {message: 'Usuario Creado Correctamente'});
+            res.render('user/create', {message: 'Usuario Creado Correctamente'});
         }
         else
         {
