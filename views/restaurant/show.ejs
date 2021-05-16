@@ -48,7 +48,7 @@
                      
                         </p>
                         <form action="/restaurants/<%= id %>/rate" method="post">
-                            <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1" value="<%= (typeof currentUserRating !== 'undefined') ? currentUserRating.rating : '1'  %>" name="rating" > estrellas</p>
+                            <p class="card-text mt-3 text-center">Mi valoración: <input type="number" max="5" min="1" value="<%= (typeof currentUserRating !== 'undefined' && currentUserRating != null) ? currentUserRating.rating : '1'  %>" name="rating" > estrellas</p>
                             <div class="d-grid gap-2 mb-3">
                                 <button class="btn btn-primary" type="submit">Valorar</button>
                             </div>
