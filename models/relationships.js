@@ -5,6 +5,7 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require("./SequelizeManager");
 const { FoodType } = require("./FoodType");
 const { History } = require("./History");
+const bcrypt = require('bcrypt');
 
 
 const sequelize = SequelizeManager.getInstance()
@@ -34,6 +35,8 @@ History.belongsTo(Restaurant)
 User.hasMany(History)
 History.belongsTo(User)
 
+const saltRounds = 10;
+
 
 async function migrateSeed(){
     await History.drop();
@@ -43,12 +46,16 @@ async function migrateSeed(){
     await User.drop();
     await sequelize.sync();
 
-    User.create({dni: '12345678A', email: 'pacoalmenara@gmail.com', password: 'password1'})
-    User.create({dni: '12345678B', email: 'stickyamp1@gmail.com', password: 'password2'})
-    User.create({dni: '12345678C', email: 'cristiancosano@icloud.com', password: 'password3', admin: true})
-    User.create({dni: '12345678D', email: 'jmgil@gmail.com', password: 'password4', admin: true})
-    User.create({dni: '12345678E', email: 'antoniolrj4@gmail.com', password: 'password5'})
-    User.create({dni: '12345678F', email: 'test@test.com', password: 'password'})
+    bcrypt.hash('password', saltRounds, function(err, hash) {
+        User.create({dni: '12345678A', email: 'pacoalmenara@gmail.com', password: hash})
+        User.create({dni: '12345678B', email: 'stickyamp1@gmail.com', password: hash})
+        User.create({dni: '12345678C', email: 'cristiancosano@icloud.com', password: hash, admin: true})
+        User.create({dni: '12345678D', email: 'jmgil@gmail.com', password: hash, admin: true})
+        User.create({dni: '12345678E', email: 'antoniolrj4@gmail.com', password: hash})
+        User.create({dni: '12345678F', email: 'test@test.com', password: hash})
+    });
+
+
 
     await FoodType.create({name: 'Asiática'});
     await FoodType.create({name: 'Brasileña'});

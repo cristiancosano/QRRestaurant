@@ -1,4 +1,7 @@
 const { User } = require("../models/User");
+const bcrypt = require('bcrypt');
+const { Op } = require("sequelize");
+
 
 class UserController{
 
@@ -11,16 +14,15 @@ class UserController{
     // Comprueba los datos y los almacena en la base de datos con sequelize
     static async store(req, res, next){
         let form = req.body
-        let usuario = await User.findOne({ where:{ dni: form.dni}})
+        let usuario = await User.findOne({ where:{ [Op.or]: [{dni: form.dni}, {email: form.email}] }})
 
-        if(usuario == null)
-        {
-        const anonymous = await User.create({ dni:form.dni, email:form.email, password:form.password});
+        if(usuario == null){
+            const saltRounds = 10;
+            bcrypt.hash(form.password, saltRounds, async (err, hash) => await User.create({ dni:form.dni, email:form.email, password:hash}));
             res.render('user/create', {message: 'Usuario Creado Correctamente'});
         }
-        else
-        {
-            res.render('user/create', {message: 'Usuario ya registrado, ha ocurrido un error'});
+        else{
+            res.render('user/create', {danger: 'El email o dni ya están registrados en nuestro sistema. Pruebe a iniciar sesión.'});
         }
     }
 

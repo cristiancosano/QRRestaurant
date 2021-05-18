@@ -1,4 +1,5 @@
 const userModel = require('../models/User').User
+const bcrypt = require('bcrypt')
 
 
 class SessionController{
@@ -20,15 +21,26 @@ class SessionController{
 
     // Comprueba los datos y almacena la sesión si son validos
     static async save(req, res, next){
-        let params = req.body;
-        let user = await userModel.findOne({where: {email: params.email, password: params.password}})
+        let form = req.body;
+
+        let user = await userModel.findOne({where: {email: form.email}})
+
         if(user == null){
-            res.cookie('danger', 'Email y contraseña incorrecta.')
+            res.cookie('danger', 'Email y/o contraseña incorrecta.')
             res.redirect('/login');
         }else{
-            req.session.currentUser = user;
-            res.cookie('message', 'Has iniciado sesión correctamente. Nos alegra tenerte por aquí de nuevo 😉')
-            res.redirect('/');
+            bcrypt.compare(form.password, user.password, function(err, result) {
+                if(result){
+                    req.session.currentUser = user;
+                    res.cookie('message', 'Has iniciado sesión correctamente. Nos alegra tenerte por aquí de nuevo 😉')
+                    res.redirect('/');
+                }
+                else{
+                    res.cookie('danger', 'Email y contraseña incorrecta.')
+                    res.redirect('/login');
+                }
+            });
+            
         }
     }
     // Cierra la sesion
