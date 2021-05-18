@@ -2,6 +2,7 @@ var express = require('express');
 const { RatingController } = require('../controllers/RatingController');
 var router = express.Router();
 var {RestaurantController} = require('../controllers/RestaurantController');
+var {HistoryController} = require('../controllers/HistoryController');
 const checkAdminUser = require('../middlewares/checkAdminUser');
 
 
@@ -16,7 +17,8 @@ router.post('/:id/delete', checkAdminUser, (req, res, next) => RestaurantControl
 router.get('/:id/alternatives', (req, res, next) => RestaurantController.alternatives(req, res, next));
 router.post('/:id/addToQueue', (req, res, next) => RestaurantController.addToQueue(req, res, next));
 router.post('/:id/rate', (req, res, next) => RatingController.store(req, res, next));
-
+router.get('/:id/chart-people-day', (req, res, next) => HistoryController.getNumPeople(req, res, next));
+router.get('/:id/chart-people-hour', (req, res, next) => HistoryController.getPeopleHour(req, res, next)); 
 
 
 module.exports = router;

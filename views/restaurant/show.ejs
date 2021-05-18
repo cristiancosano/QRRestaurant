@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <%- include('../partials/header') %>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
     <title>QrRestaurant</title>
 </head>
 <body>
@@ -21,14 +22,31 @@
                     <%- include('../partials/carousel', {photos, path: '/assets/img/'}) %> 
                     <!--<img src="/assets/img/<%= photos[0] %>" class="card-img-top" style="width: 150px; margin: 0 auto;">-->
                     <div class="card-body">
-                        <h5 class="card-title"><%= name %>  <span class="badge bg-warning">Comida <%= foodType.name %></span></h5>
-                        <p class="card-text"><%= description %></p>
-                        <h4 class="h6">Carta del restaurante:</h4>
-                        <div id="adobe-dc-view" style="width: 100%; height: 500px;"></div>
-                        <!--<embed src="/assets/restaurantMenu/<%= menu %>" type="application/pdf" width="100%" height="400px" />-->
-                    </div>
+                        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Información</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Historial</button>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <h5 class="card-title"><%= name %>  <span class="badge bg-warning">Comida <%= foodType.name %></span></h5>
+                                <p class="card-text"><%= description %></p>
+                                <h4 class="h6">Carta del restaurante:</h4>
+                                <div id="adobe-dc-view" style="width: 100%; height: 500px;"></div>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <h5 class="card-title">Historial del restaurante</h5>
+                                <canvas class="mb-5" id="popChart" width="100%"></canvas>
+                                <hr>    
+                                <canvas class="mb-5" id="peopleHour" width="100%"></canvas>    
+                            </div>
+                          </div>
                     </div>
                 </div>
+            </div>
                 <div class="col-lg-4">
                 <div class="card text-dark bg-light mb-3 mt-3">
                     <div class="card-header">Aforo</div>
@@ -78,6 +96,8 @@
         </div>
     </div>
 
+    <input type="hidden" value="<%=id%>" id="restaurantId">
+
     <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
     <script type="text/javascript">
     document.addEventListener("adobe_dc_view_sdk.ready", function(){
@@ -102,6 +122,8 @@
         });
     });
     </script>
+    <script src="/js/peopleHours.js"></script>
+    <script src="/js/chartNumberPeople.js"></script>
 
     
     <%- include('../partials/footer') %>
