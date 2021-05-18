@@ -2,19 +2,23 @@
     function numberChart(labels, data){
         var popCanvas = document.getElementById("peopleHour");
         var backgroundColor = new Array();
-        data.forEach(element => {
+        data.forEach(() => {
             backgroundColor.push('rgba(54, 162, 235, 0.6)')
         });
+        console.log(data)
+        console.log(labels)
         var barChart = new Chart(popCanvas, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-            label: 'Número de personas por hora',
-            data,
-            backgroundColor
-            }]
-        }
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                label: 'Número de personas por hora',
+                data,
+                backgroundColor,
+                showLine: true,
+                fill: false
+                }]
+            }
         });
     }
     
