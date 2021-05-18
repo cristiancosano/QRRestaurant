@@ -6,3 +6,4 @@
 ![Diagrama de Actividad: Editar Restaurante](diagramaDeActividad-EditarRestaurante.png "Editar Restaurante")
 ![Diagrama de Actividad: Eliminar Restaurante](diagramaDeActividad-EliminarRestaurante.png "Eliminar Restaurante")
 ![Diagrama de Actividad: Valorar Restaurante](diagramaDeActividad-ValorarRestaurante.png "Valorar Restaurante")
+![Diagrama de Actividad: Escanear Qr](diagramaDeActividad-EscanearQr.jpg "Escanear Qr")
