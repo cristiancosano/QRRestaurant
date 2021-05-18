@@ -5,6 +5,7 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 const { SequelizeManager } = require("./SequelizeManager");
 const { FoodType } = require("./FoodType");
 const { History } = require("./History");
+const { QueryTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 
 
@@ -91,10 +92,17 @@ async function migrateSeed(){
     Rating.create({rating: 4, restaurantId: 3, userDni: '12345678D'})
     Rating.create({rating: 2, restaurantId: 3, userDni: '12345678E'})
 
+    //History.create({companions: 2, restaurantId: 1, userDni: '12345678A'})
+    //History.create({companions: 0, restaurantId: 1, userDni: '12345678B'})
+    //History.create({companions: 3, restaurantId: 1, userDni: '12345678C'})
+    //History.create({companions: 0, createdAt: '2021-05-17 13:00:00', updatedAt: '2021-05-17 15:00:00', restaurantId: 1, userDni: '12345678D'})
 
+    //INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')
+
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
 };
 
 
 (async function(){
-    //await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+    await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
 })();
