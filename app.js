@@ -56,7 +56,6 @@ app.use('/register', registerRouter);
 app.use('/logout', logoutRouter);
 app.use('/search', searchRouter);
 app.use('/faqs', faqRouter);
-app.get('/.well-known/acme-challenge/vKjF-RmNY3fIc2pXAZ2w3Lud4-SJIPoVlwc0CTV80iY', (req, res, next) => res.send('vKjF-RmNY3fIc2pXAZ2w3Lud4-SJIPoVlwc0CTV80iY.w_k6f23v85Dx-hzG9I5iWkwMETjELS1Af13c4QQpkNk'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
