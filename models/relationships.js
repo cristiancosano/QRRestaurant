@@ -93,37 +93,55 @@ async function migrateSeed(){
     await Rating.create({rating: 4, restaurantId: 3, userDni: '12345678D'})
     await Rating.create({rating: 2, restaurantId: 3, userDni: '12345678E'})
 
-    //History.create({companions: 2, restaurantId: 1, userDni: '12345678A'})
-    //History.create({companions: 0, restaurantId: 1, userDni: '12345678B'})
-    //History.create({companions: 3, restaurantId: 1, userDni: '12345678C'})
-    //History.create({companions: 0, createdAt: '2021-05-17 13:00:00', updatedAt: '2021-05-17 15:00:00', restaurantId: 1, userDni: '12345678D'})
 
-    //INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')
-
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678B')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (0, '2021-05-17 13:15:00', '2021-05-17 13:50:00', 1, '12345678C')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-17 13:15:00', '2021-05-17 13:50:00', 1, '12345678D')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-17 13:20:00', '2021-05-17 14:10:00', 1, '12345678E')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:12', '2021-05-17 14:00:32', 1, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:00:43', '2021-05-17 14:00:45', 1, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (0, '2021-05-17 13:15:12', '2021-05-17 13:50:34', 1, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-17 13:15:50', '2021-05-17 13:50:23', 1, '12345678D')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-17 13:23:13', '2021-05-17 14:10:12', 1, '12345678E')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-17 14:01:40', '2021-05-17 15:00:34', 1, '12345678F')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-18 13:03:26', '2021-05-18 13:47:20', 1, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-18 13:07:30', '2021-05-18 14:23:01', 1, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (8, '2021-05-18 14:12:00', '2021-05-18 16:57:32', 1, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (4, '2021-05-18 15:05:10', '2021-05-17 15:40:40', 1, '12345678D')", { type: QueryTypes.INSERT });    
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (9, '2021-05-19 12:12:12', '2021-05-19 13:14:15', 1, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-19 13:00:00', '2021-05-19 14:37:20', 1, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-19 14:23:23', '2021-05-19 15:34:30', 1, '12345678C')", { type: QueryTypes.INSERT });
     
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (4, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (6, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (4, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (8, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (9, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (8, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
-    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (9, '2021-05-17 13:00:00', '2021-05-17 14:00:00', 1, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-17 13:00:12', '2021-05-17 14:00:32', 2, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:00:43', '2021-05-17 14:00:45', 2, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (6, '2021-05-17 13:15:12', '2021-05-17 13:50:34', 2, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-17 13:15:50', '2021-05-17 13:50:23', 2, '12345678D')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-17 13:23:13', '2021-05-17 14:10:12', 2, '12345678E')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-17 14:01:40', '2021-05-17 15:00:34', 2, '12345678F')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-19 13:03:26', '2021-05-18 13:47:20', 2, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-19 13:07:30', '2021-05-18 14:23:01', 2, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (8, '2021-05-19 14:12:00', '2021-05-18 16:57:32', 2, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (9, '2021-05-19 15:05:10', '2021-05-17 15:40:40', 2, '12345678D')", { type: QueryTypes.INSERT });    
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-19 12:12:12', '2021-05-19 13:14:15', 2, '12345678E')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (6, '2021-05-19 13:00:00', '2021-05-19 14:37:20', 2, '12345678F')", { type: QueryTypes.INSERT });
+    
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (9, '2021-05-17 13:20:12', '2021-05-17 14:00:32', 3, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-17 13:20:43', '2021-05-17 14:00:45', 3, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (4, '2021-05-17 13:15:12', '2021-05-17 13:50:34', 3, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (5, '2021-05-17 13:15:50', '2021-05-17 13:50:23', 3, '12345678D')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (6, '2021-05-17 13:23:13', '2021-05-17 14:10:12', 3, '12345678E')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (1, '2021-05-17 14:01:40', '2021-05-17 15:00:34', 3, '12345678F')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (0, '2021-05-18 13:03:26', '2021-05-18 13:47:20', 3, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (3, '2021-05-18 13:07:30', '2021-05-18 14:23:01', 3, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-18 14:12:00', '2021-05-18 16:57:32', 3, '12345678C')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (7, '2021-05-18 15:05:10', '2021-05-17 15:40:40', 3, '12345678D')", { type: QueryTypes.INSERT });    
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-19 12:12:12', '2021-05-19 13:14:15', 3, '12345678A')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (2, '2021-05-19 13:00:00', '2021-05-19 14:37:20', 3, '12345678B')", { type: QueryTypes.INSERT });
+    await sequelize.query("INSERT INTO `history` (companions, createdAt, updatedAt, restaurantId, userDni) VALUES (4, '2021-05-19 14:23:23', '2021-05-19 15:34:30', 3, '12345678C')", { type: QueryTypes.INSERT });
+
+
+
+
 
 };
 
 
 (async function(){
-    //await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
+    await migrateSeed() //OJO: Si se descomenta esto borra todos los datos y mete los que incluye por defecto la función
 })();
