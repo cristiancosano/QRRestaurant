@@ -254,7 +254,6 @@ class RestaurantController{
                     let currentRestaurant = restaurantQueue.queue.shift();
                     restaurantQueue.queue.forEach(user => {
                         let people = parseInt(user.companions)+1;
-                        console.log('asientos libres', restaurant.freeSeats, 'asientos que ocupa el inquilino', parseInt(currentRestaurant.companions), 'diferencia', restaurant.freeSeats-parseInt(currentRestaurant.companions), 'proximo en cola', people, 'cabe el proximo?', restaurant.freeSeats-parseInt(currentRestaurant.companions) >= people, 'usuario', user.user)
                         if(restaurant.freeSeats-parseInt(currentRestaurant.companions) >= people){ //El siguiente de la cola también puede entrar
                             Sockets.emit(user.user, 'yourTurn', {action: 'yourTurn', status:'scanQRAgain', restaurant: form.restaurant});
                         }

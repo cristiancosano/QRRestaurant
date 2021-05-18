@@ -11,7 +11,6 @@ class SearchController{
         let form = req.body
         let restaurantName = form.restaurantName;
         let restaurants = await restaurantModel.findAll({where: {name: {[Op.like]: '%'+restaurantName.replace(' ', '%')+'%'}}});
-        console.log('iepa', restaurants, restaurants.length, restaurantName)
         let foodTypes = await foodTypeModel.findAll({include: restaurantModel});
         if(restaurants.length == 0){
           res.cookie('danger', 'No se han encontrado resultados para el nombre del restaurante introducido.')

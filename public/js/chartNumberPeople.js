@@ -26,7 +26,6 @@
     
     xhr.addEventListener('readystatechange', ()=>{
         let result = xhr.response;
-        console.log(result)
         if(result != null){
             numberChart(result.createdAt, result.people);
         }
