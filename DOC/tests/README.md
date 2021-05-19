@@ -1,2 +1,2 @@
-
-En este apartado se especifican y detallan todos los cumplimientos de requisitos remarcados a través de capturas de pantalla ya sea en computador o en teléfono móvil de esos cumplimientos dichos.
+# Cumplimiento de los requisitos
+![Cumplimiento del Requisito 1](tests/RF1%20Cumplimiento/RF%201%20(1).png "RF 1 (1)")
