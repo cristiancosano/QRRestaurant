@@ -6,7 +6,7 @@
             backgroundColor.push('rgba(255, 99, 132, 0.6)')
         });
         var barChart = new Chart(popCanvas, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels,
             datasets: [{
@@ -27,7 +27,7 @@
     xhr.addEventListener('readystatechange', ()=>{
         let result = xhr.response;
         if(result != null){
-            numberChart(result.createdAt, result.people);
+            numberChart(result.date, result.people);
         }
     })
 })()

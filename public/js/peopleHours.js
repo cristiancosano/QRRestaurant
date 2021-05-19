@@ -8,7 +8,7 @@
         console.log(data)
         console.log(labels)
         var barChart = new Chart(popCanvas, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels,
                 datasets: [{
@@ -31,7 +31,7 @@
     xhr.addEventListener('readystatechange', ()=>{
         let result = xhr.response;
         if(result != null){
-            numberChart(result.hour, result.people);
+            numberChart(result.date, result.people);
         }
     })    
 })()
