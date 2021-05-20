@@ -86,5 +86,10 @@ Las historias de usuario que llevamos a cabo fueron:
 
 ![sprint-7](/SCRUM/BurndownChart/sprint-7.png "Sprint 7")
 
+### Gráfico final después de realizar todos los sprints
+![grafico-final](/SCRUM/BurndownChart/grafico-final.png "Gráfico final")
+
+
+
 
 
