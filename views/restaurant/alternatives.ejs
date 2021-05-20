@@ -11,8 +11,8 @@
         <form action="/restaurants/<%= id %>/addToQueue" method="post">
         <% if(restaurants.length > 0){ %>
        <h3 class="mt-4">Alternativas al restaurante '<%=name%>'</h3>
-       <h6>Actualmente en el restaurante hay X personas. Puedes esperar o dirigirte a alguno de lo siguientes restaurantes alternativos:</h6>
-       <button class="btn btn-primary">Prefiero esperar. Añadirme a la cola</button>
+       <!--<h6>Actualmente en el restaurante hay X personas. Puedes esperar o dirigirte a alguno de lo siguientes restaurantes alternativos:</h6>
+       <button class="btn btn-primary">Prefiero esperar. Añadirme a la cola</button>-->
 
        <% restaurants.forEach(restaurant => {%>
         <%- include('../partials/restaurantCard', {
