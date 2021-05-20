@@ -57,11 +57,17 @@ class RestaurantController{
         data.message = message;
         data.danger = danger;
         data.currentUserRating = undefined;
-        
+
+        let averageStay = await historyModel.getAverageStay(params.id);
+        let averageStaySplited = averageStay.split(':');
+        averageStaySplited.pop();   
+        averageStay = averageStaySplited.join(':');
+
+        data.averageStay = averageStay;
 
         if(req.session.currentUser !== undefined) 
             data.currentUserRating = await restaurant.getRatingByUser(req.session.currentUser.dni)
-
+                
         res.render('restaurant/show', data);
     }
 
