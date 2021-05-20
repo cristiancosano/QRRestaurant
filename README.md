@@ -38,3 +38,53 @@ A principios de semana realizamos un reparto de los diagramas que cada uno iba a
 
 ![sprint-3](/SCRUM/BurndownChart/sprint-3.png "Sprint 3")
 
+### Semana del 25/04 al 29/04
+En esta semana hemos trabajado en la práctica 3, modelado en UWE. Para ello nos hemos ayudado de la herramienta MagicDraw y el plugin MagicUWE. 
+A principios de semana realizamos un reparto de los diagramas que cada uno iba a realizar y llevamos un seguimiento a través del backlog.
+Las historias de usuario que llevamos a cabo fueron: 
+1. **Modelo de contenido.** Aquí trabajamos en el primer modelo, el de contenido.
+2. **Modelo de usuario.** Realizamos el modelo de usuario.
+
+
+![sprint-4](/SCRUM/BurndownChart/sprint-4.png "Sprint 4")
+
+### Semana del 29/04 al 02/05
+En esta semana seguimos trabajado en la práctica 3, modelado en UWE. Para ello nos hemos ayudado de la herramienta MagicDraw y el plugin MagicUWE. 
+A principios de semana realizamos un reparto de los diagramas que cada uno iba a realizar y llevamos un seguimiento a través del backlog.
+Las historias de usuario que llevamos a cabo fueron: 
+1. **Modelado de flujo de proceso.** Aquí trabajamos en el primer modelo, el de contenido.
+
+
+![sprint-5](/SCRUM/BurndownChart/sprint-5.png "Sprint 5")
+
+### Semana del 06/05 al 15/05
+En esta semana comenzamos a trabajar en la implementación del código, ayudandonos de todos los diagramas que hemos realizado en UWE y partiendo de los requisitos del sistema.  
+A principios de semana realizamos un reparto de los diagramas que cada uno iba a realizar y llevamos un seguimiento a través del backlog.
+Las historias de usuario que llevamos a cabo fueron: 
+1. **Gestión de filtros.**
+2. **Gestión de usuarios.** 
+3. **Gestión de la cola.**
+4. **Gestión de restaurante.** 
+5. **Gestión de QRs.**
+6. **Gestión de la sesión.**
+7. **Base de datos.**
+
+
+
+![sprint-6](/SCRUM/BurndownChart/sprint-6.png "Sprint 6")
+
+### Semana del 17/05 al 20/05
+En este útlimo sprint hemos puesto a prueba nuestra aplicación a través de diversos test. Los test los hicimos sobre la base de datos, dimos la aplicación a usuarios externos para obtener feedback y a través de todo esto poder mejorarla.   
+A principios de semana realizamos un reparto de los diagramas que cada uno iba a realizar y llevamos un seguimiento a través del backlog.
+Las historias de usuario que llevamos a cabo fueron: 
+1. **Test de usuario.**
+2. **Test de compatibilidad.** 
+3. **Test de restaurante.**
+4. **Test de rendimiento.** 
+
+
+
+![sprint-7](/SCRUM/BurndownChart/sprint-7.png "Sprint 7")
+
+
+
