@@ -26,6 +26,19 @@ class History extends Model {
             {type: QueryTypes.SELECT}
         );
     }
+
+    static async getAverageStay(restaurantId){
+        let query= await sequelize.query
+        (
+            `select sec_to_time(AVG(subtime(time(updatedAt), time(createdAt)))) 
+            as promedio_restaurante from history WHERE history.restaurantId = ${restaurantId}`,
+            
+            {type: QueryTypes.SELECT}
+        );
+
+        return query[0].promedio_restaurante;
+    }
+
 }
 History.init({
     companions: DataTypes.INTEGER

@@ -19,7 +19,6 @@ router.get('/:id/alternatives', (req, res, next) => RestaurantController.alterna
 router.post('/:id/addToQueue', (req, res, next) => RestaurantController.addToQueue(req, res, next));
 router.post('/:id/rate', (req, res, next) => RatingController.store(req, res, next));
 router.get('/:id/chart-people-day', (req, res, next) => HistoryController.getPeopleByDay(req, res, next));
-router.get('/:id/chart-people-hour', (req, res, next) => HistoryController.getPeopleByHour(req, res, next)); 
-
+router.get('/:id/chart-people-hour', (req, res, next) => HistoryController.getPeopleByHour(req, res, next));
 
 module.exports = router;
